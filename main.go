@@ -23,6 +23,7 @@ var (
 	getLast         int64
 	chainOut        bool
 	textOut         bool
+	crlOut          bool
 	outputFile      *os.File
 )
 
@@ -31,7 +32,7 @@ func main() {
 
 	// Open output file
 	var err error
-	outputFile, err = os.Create("output.txt")
+	outputFile, err = os.Create("data/output.txt")
 	if err != nil {
 		klog.Exitf("Failed to create output file: %v", err)
 	}
@@ -45,10 +46,11 @@ func main() {
 	defer file.Close()
 
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
-	chainOut = true        // Entire chain or only end/leaf in output
-	textOut = false        // .pem or .txt output
+	chainOut = false       // Entire chain or only end/leaf in output
+	textOut = true         // .pem or .txt output
+	crlOut = true          // print only crl of cert.
 	getFirst = 0           // First index
-	getLast = 0            // Last index
+	getLast = 255          // Last index
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -109,6 +111,7 @@ func showRawLogEntry(rle *ct.RawLogEntry) {
 }
 
 func showRawCert(cert ct.ASN1Cert) {
+
 	if textOut {
 		c, err := x509.ParseCertificate(cert.Data)
 		if err != nil {
@@ -124,11 +127,14 @@ func showRawCert(cert ct.ASN1Cert) {
 }
 
 func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 chain file, if not no chain files
-	if textOut {
+	if crlOut {
+		fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints)
+	} else if textOut {
 		fmt.Fprintf(outputFile, "%s\n", x509util.CertificateToString(cert))
 	} else {
 		showPEMData(cert.Raw)
 	}
+
 }
 
 func showPEMData(data []byte) {

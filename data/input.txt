@@ -2,3 +2,5 @@ https://ct.googleapis.com/logs/us1/argon2024/
 https://ct.googleapis.com/logs/us1/argon2025h1/
 https://ct.googleapis.com/logs/us1/argon2025h2/
 https://ct.googleapis.com/logs/eu1/xenon2024/
+https://ct2025-a.trustasia.com/log2025a/
+https://ct2025-b.trustasia.com/log2025b/
