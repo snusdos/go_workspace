@@ -27,6 +27,12 @@ var (
 	outputFile      *os.File
 )
 
+/*
+TODO:
+ 1. implement way to increase entries gotten for each log
+    1.1 ex by repeating 255 gotten untill certain number of index for each log reached
+ 2. Implement go routines
+*/
 func main() {
 	ctx := context.Background()
 
@@ -48,7 +54,7 @@ func main() {
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
 	chainOut = false       // Entire chain or only end/leaf in output
 	textOut = true         // .pem or .txt output
-	crlOut = true          // print only crl of cert. textout must be true
+	crlOut = false         // print only crl of cert. textout must be true
 	getFirst = 0           // First index
 	getLast = 0            // Last index
 
@@ -98,8 +104,8 @@ func showRawLogEntry(rle *ct.RawLogEntry) {
 		fmt.Fprintf(outputFile, "X.509 certificate:\n")
 		showRawCert(*ts.X509Entry)
 	case ct.PrecertLogEntryType:
-		fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
-		showRawCert(rle.Cert)
+		//fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
+		//showRawCert(rle.Cert)
 	default:
 		fmt.Fprintf(outputFile, "Unhandled log entry type %d\n", ts.EntryType)
 	}
