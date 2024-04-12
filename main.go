@@ -24,6 +24,7 @@ var (
 	chainOut        bool
 	textOut         bool
 	crlOut          bool
+	preOut          bool
 	outputFile      *os.File
 )
 
@@ -55,8 +56,9 @@ func main() {
 	chainOut = false       // Entire chain or only end/leaf in output
 	textOut = true         // .pem or .txt output
 	crlOut = false         // print only crl of cert. textout must be true
+	preOut = false         //include pres or not
 	getFirst = 0           // First index
-	getLast = 0            // Last index
+	getLast = 255          // Last index
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -103,9 +105,12 @@ func showRawLogEntry(rle *ct.RawLogEntry) {
 	case ct.X509LogEntryType:
 		fmt.Fprintf(outputFile, "X.509 certificate:\n")
 		showRawCert(*ts.X509Entry)
+
 	case ct.PrecertLogEntryType:
-		//fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
-		//showRawCert(rle.Cert)
+		if preOut {
+			fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
+			showRawCert(rle.Cert)
+		}
 	default:
 		fmt.Fprintf(outputFile, "Unhandled log entry type %d\n", ts.EntryType)
 	}
