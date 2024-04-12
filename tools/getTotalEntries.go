@@ -1,5 +1,9 @@
 package main
 
+//240412
+//all_logs_list -> 22,742,931,583 certs
+//log_list -> 6,209,388,650 certs
+
 import (
 	"encoding/json"
 	"fmt"
