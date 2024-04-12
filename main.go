@@ -38,7 +38,7 @@ func main() {
 	defer outputFile.Close()
 
 	// Read logURIs from a file
-	file, err := os.Open("input.txt")
+	file, err := os.Open("data/input.txt")
 	if err != nil {
 		klog.Exitf("Failed to read log URI file: %v", err)
 	}
