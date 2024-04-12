@@ -48,9 +48,9 @@ func main() {
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
 	chainOut = false       // Entire chain or only end/leaf in output
 	textOut = true         // .pem or .txt output
-	crlOut = true          // print only crl of cert.
+	crlOut = true          // print only crl of cert. textout must be true
 	getFirst = 0           // First index
-	getLast = 255          // Last index
+	getLast = 0            // Last index
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -128,7 +128,9 @@ func showRawCert(cert ct.ASN1Cert) {
 
 func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 chain file, if not no chain files
 	if crlOut {
-		fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints)
+		if len(cert.CRLDistributionPoints) > 0 {
+			fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints)
+		}
 	} else if textOut {
 		fmt.Fprintf(outputFile, "%s\n", x509util.CertificateToString(cert))
 	} else {
