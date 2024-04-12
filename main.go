@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"context"
 	"encoding/pem"
 	"fmt"
@@ -28,27 +29,37 @@ var (
 func main() {
 	ctx := context.Background()
 
-	// Read logURI from a file
-	data, err := os.ReadFile("input.txt")
-	if err != nil {
-		klog.Exitf("Failed to read log URI file: %v", err)
-	}
-	logURI = string(data)
-
 	// Open output file
+	var err error
 	outputFile, err = os.Create("output.txt")
 	if err != nil {
 		klog.Exitf("Failed to create output file: %v", err)
 	}
 	defer outputFile.Close()
 
-	skipHTTPSVerify = true //skip verification of chain and hostname or not
-	chainOut = false       //entire chain or only end/leaf in output
-	textOut = true         //.pem or .txt output
-	getFirst = 1           //first index
-	getLast = 6            //last
+	// Read logURIs from a file
+	file, err := os.Open("input.txt")
+	if err != nil {
+		klog.Exitf("Failed to read log URI file: %v", err)
+	}
+	defer file.Close()
 
-	runGetEntries(ctx)
+	skipHTTPSVerify = true // Skip verification of chain and hostname or not
+	chainOut = true        // Entire chain or only end/leaf in output
+	textOut = false        // .pem or .txt output
+	getFirst = 0           // First index
+	getLast = 0            // Last index
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		logURI = scanner.Text()
+		fmt.Printf("Running Log: %s\n", logURI)
+		runGetEntries(ctx)
+	}
+
+	if err := scanner.Err(); err != nil {
+		klog.Errorf("Error reading URIs: %v", err)
+	}
 }
 
 func runGetEntries(ctx context.Context) {
@@ -112,7 +123,7 @@ func showRawCert(cert ct.ASN1Cert) {
 	}
 }
 
-func showParsedCert(cert *x509.Certificate) {
+func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 chain file, if not no chain files
 	if textOut {
 		fmt.Fprintf(outputFile, "%s\n", x509util.CertificateToString(cert))
 	} else {
