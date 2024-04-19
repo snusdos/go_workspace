@@ -62,7 +62,7 @@ func main() {
 	preOut = true          //include pres or not
 	getFirst = 0           // First index
 	getLast = 256          // Last index
-	maxEntries = 100       //set max amount of entries for each log
+	maxEntries = 10000000  //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -96,10 +96,10 @@ func runGetEntries(ctx context.Context, logURI string) {
 
 		rsp, err := logClient.GetRawEntries(ctx, getFirst, getLast)
 		if err != nil {
-			exitWithDetails(err)
-			fmt.Print("ERROR FROM", logURI)
-			//index += dynInt
-			//continue
+			fmt.Println("ERROR FROM: \n", logURI)
+			//exitWithDetails(err)
+			index += dynInt
+			continue
 		}
 
 		entriesReturned := int64(len(rsp.Entries))
@@ -126,18 +126,18 @@ func runGetEntries(ctx context.Context, logURI string) {
 
 func showRawLogEntry(rle *ct.RawLogEntry) {
 	ts := rle.Leaf.TimestampedEntry
-	when := ct.TimestampToTime(ts.Timestamp)
-	lock.Lock()
-	fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
-	lock.Unlock()
+	//when := ct.TimestampToTime(ts.Timestamp)
+	//lock.Lock()
+	//fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
+	//lock.Unlock()
 	switch ts.EntryType {
 	case ct.X509LogEntryType:
-		fmt.Fprintf(outputFile, "X.509 certificate:\n")
+		//fmt.Fprintf(outputFile, "X.509 certificate:\n")
 		showRawCert(*ts.X509Entry)
 
 	case ct.PrecertLogEntryType:
 		if preOut {
-			fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
+			//fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
 			showRawCert(rle.Cert)
 		}
 	default:
@@ -169,7 +169,9 @@ func showRawCert(cert ct.ASN1Cert) {
 func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 chain file, if not no chain files
 	if crlOut {
 		if len(cert.CRLDistributionPoints) > 0 {
-
+			lock.Lock()
+			fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints[0])
+			lock.Unlock()
 		}
 	} else if textOut {
 		fmt.Fprintf(outputFile, "%s\n", x509util.CertificateToString(cert))
