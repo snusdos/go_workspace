@@ -21,17 +21,16 @@ func exitWithDetails(err error) {
 		klog.Infof("HTTP details: status=%d, body:\n%s", err.StatusCode, err.Body)
 	}
 	klog.Exit(err.Error())
-
 }
 
 func connect(_ context.Context, logURI string) *client.LogClient {
 	var tlsCfg *tls.Config
 	if skipHTTPSVerify {
-		klog.Warning("Skipping HTTPS connection verification")
+		//klog.Warning("Skipping HTTPS connection verification")
 		tlsCfg = &tls.Config{InsecureSkipVerify: skipHTTPSVerify}
 	}
 	httpClient := &http.Client{
-		Timeout: 10 * time.Second,
+		Timeout: 100 * time.Second, //10 was abit low
 		Transport: &http.Transport{
 			TLSHandshakeTimeout:   30 * time.Second,
 			ResponseHeaderTimeout: 30 * time.Second,

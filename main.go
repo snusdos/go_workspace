@@ -18,16 +18,17 @@ var (
 	skipHTTPSVerify bool
 	logName         string
 	logList         string
-	logURI          string
-	pubKey          string
-	getFirst        int64
-	getLast         int64
-	chainOut        bool
-	textOut         bool
-	crlOut          bool
-	preOut          bool
-	outputFile      *os.File
-	maxEntries      int64
+	//logURI          string	moved
+	pubKey     string
+	getFirst   int64
+	getLast    int64
+	chainOut   bool
+	textOut    bool
+	crlOut     bool
+	preOut     bool
+	outputFile *os.File
+	maxEntries int64
+	lock       sync.Mutex
 )
 
 /*
@@ -57,11 +58,11 @@ func main() {
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
 	chainOut = false       // Entire chain or only end/leaf in output
 	textOut = true         // .pem or .txt output
-	crlOut = false         // print only crl of cert. textout must be true
+	crlOut = true          // print only crl of cert. textout must be true
 	preOut = true          //include pres or not
 	getFirst = 0           // First index
-	getLast = 255          // Last index
-	maxEntries = 1         //set max amount of entries for each log
+	getLast = 256          // Last index
+	maxEntries = 100       //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -84,10 +85,10 @@ func main() {
 func runGetEntries(ctx context.Context, logURI string) {
 	logClient := connect(ctx, logURI)
 	index := int64(0)
-
+	dynInt := int64(256)
 	for index < maxEntries {
 		getFirst := index
-		getLast := index + 256
+		getLast := index + dynInt - 1
 
 		if getLast >= maxEntries {
 			getLast = maxEntries - 1
@@ -96,6 +97,14 @@ func runGetEntries(ctx context.Context, logURI string) {
 		rsp, err := logClient.GetRawEntries(ctx, getFirst, getLast)
 		if err != nil {
 			exitWithDetails(err)
+			fmt.Print("ERROR FROM", logURI)
+			//index += dynInt
+			//continue
+		}
+
+		entriesReturned := int64(len(rsp.Entries))
+		if entriesReturned == 0 { // No more entries to process
+			break
 		}
 
 		for i, rawEntry := range rsp.Entries {
@@ -107,16 +116,20 @@ func runGetEntries(ctx context.Context, logURI string) {
 			}
 			showRawLogEntry(rle)
 		}
-		index = getLast + 1
-	}
+		index += entriesReturned      //update index based off actual entries returned
+		if entriesReturned < dynInt { //check for
+			dynInt = entriesReturned
+		}
 
+	}
 }
 
 func showRawLogEntry(rle *ct.RawLogEntry) {
 	ts := rle.Leaf.TimestampedEntry
 	when := ct.TimestampToTime(ts.Timestamp)
+	lock.Lock()
 	fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
-
+	lock.Unlock()
 	switch ts.EntryType {
 	case ct.X509LogEntryType:
 		fmt.Fprintf(outputFile, "X.509 certificate:\n")
@@ -156,7 +169,7 @@ func showRawCert(cert ct.ASN1Cert) {
 func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 chain file, if not no chain files
 	if crlOut {
 		if len(cert.CRLDistributionPoints) > 0 {
-			fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints)
+
 		}
 	} else if textOut {
 		fmt.Fprintf(outputFile, "%s\n", x509util.CertificateToString(cert))
