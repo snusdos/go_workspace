@@ -20,7 +20,7 @@ func exitWithDetails(err error) {
 	if err, ok := err.(client.RspError); ok {
 		klog.Infof("HTTP details: status=%d, body:\n%s", err.StatusCode, err.Body)
 	}
-	klog.Exit(err.Error())
+	klog.Error(err.Error()) //klog.Exit(err.Error())
 }
 
 func connect(_ context.Context, logURI string) *client.LogClient {

@@ -62,7 +62,7 @@ func main() {
 	preOut = true          //include pres or not
 	getFirst = 0           // First index
 	getLast = 256          // Last index
-	maxEntries = 10000000  //set max amount of entries for each log
+	maxEntries = 1000000   //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -97,7 +97,8 @@ func runGetEntries(ctx context.Context, logURI string) {
 		rsp, err := logClient.GetRawEntries(ctx, getFirst, getLast)
 		if err != nil {
 			fmt.Println("ERROR FROM: \n", logURI)
-			//exitWithDetails(err)
+			fmt.Println(err)
+			exitWithDetails(err)
 			index += dynInt
 			continue
 		}
@@ -178,7 +179,6 @@ func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 cha
 	} else {
 		showPEMData(cert.Raw)
 	}
-
 }
 
 func showPEMData(data []byte) {
