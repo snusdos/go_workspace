@@ -6,6 +6,7 @@ import (
 	"encoding/pem"
 	"fmt"
 	"os"
+	"sync"
 
 	ct "github.com/google/certificate-transparency-go"
 	"github.com/google/certificate-transparency-go/x509"
@@ -36,6 +37,7 @@ TODO:
 */
 func main() {
 	ctx := context.Background()
+	var wg sync.WaitGroup // WaitGroup to manage concurrency
 
 	// Open output file
 	var err error
@@ -53,27 +55,33 @@ func main() {
 	defer file.Close()
 
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
-	chainOut = false       // Entire chain or only end/leaf in output
+	chainOut = true        // Entire chain or only end/leaf in output
 	textOut = true         // .pem or .txt output
 	crlOut = false         // print only crl of cert. textout must be true
-	preOut = false         //include pres or not
+	preOut = true          //include pres or not
 	getFirst = 0           // First index
 	getLast = 255          // Last index
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		logURI = scanner.Text()
+		logURI := scanner.Text()
 		fmt.Printf("Running Log: %s\n", logURI)
-		runGetEntries(ctx)
+		wg.Add(1) // Increment the WaitGroup counter
+		go func(uri string) {
+			defer wg.Done()         // Decrement the counter when the goroutine completes
+			runGetEntries(ctx, uri) // Pass logURI to the goroutine
+		}(logURI)
 	}
 
 	if err := scanner.Err(); err != nil {
 		klog.Errorf("Error reading URIs: %v", err)
 	}
+
+	wg.Wait() // Wait for all goroutines to finish
 }
 
-func runGetEntries(ctx context.Context) {
-	logClient := connect(ctx)
+func runGetEntries(ctx context.Context, logURI string) {
+	logClient := connect(ctx, logURI)
 	if getFirst == -1 {
 		klog.Exit("No -first option supplied")
 	}

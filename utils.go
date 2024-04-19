@@ -24,7 +24,7 @@ func exitWithDetails(err error) {
 
 }
 
-func connect(ctx context.Context) *client.LogClient {
+func connect(_ context.Context, logURI string) *client.LogClient {
 	var tlsCfg *tls.Config
 	if skipHTTPSVerify {
 		klog.Warning("Skipping HTTPS connection verification")
