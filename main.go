@@ -27,13 +27,13 @@ var (
 	crlOut          bool
 	preOut          bool
 	outputFile      *os.File
+	maxEntries      int64
 )
 
 /*
 TODO:
  1. implement way to increase entries gotten for each log
     1.1 ex by repeating 255 gotten untill certain number of index for each log reached
- 2. Implement go routines
 */
 func main() {
 	ctx := context.Background()
@@ -55,19 +55,20 @@ func main() {
 	defer file.Close()
 
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
-	chainOut = true        // Entire chain or only end/leaf in output
+	chainOut = false       // Entire chain or only end/leaf in output
 	textOut = true         // .pem or .txt output
 	crlOut = false         // print only crl of cert. textout must be true
 	preOut = true          //include pres or not
 	getFirst = 0           // First index
 	getLast = 255          // Last index
+	maxEntries = 1         //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		logURI := scanner.Text()
 		fmt.Printf("Running Log: %s\n", logURI)
-		wg.Add(1) // Increment the WaitGroup counter
-		go func(uri string) {
+		wg.Add(1)             // Increment the WaitGroup counter
+		go func(uri string) { // GO routine feeding rGE with logURI to allow concurr
 			defer wg.Done()         // Decrement the counter when the goroutine completes
 			runGetEntries(ctx, uri) // Pass logURI to the goroutine
 		}(logURI)
@@ -82,26 +83,33 @@ func main() {
 
 func runGetEntries(ctx context.Context, logURI string) {
 	logClient := connect(ctx, logURI)
-	if getFirst == -1 {
-		klog.Exit("No -first option supplied")
-	}
-	if getLast == -1 {
-		getLast = getFirst
-	}
-	rsp, err := logClient.GetRawEntries(ctx, getFirst, getLast)
-	if err != nil {
-		exitWithDetails(err)
+	index := int64(0)
+
+	for index < maxEntries {
+		getFirst := index
+		getLast := index + 256
+
+		if getLast >= maxEntries {
+			getLast = maxEntries - 1
+		}
+
+		rsp, err := logClient.GetRawEntries(ctx, getFirst, getLast)
+		if err != nil {
+			exitWithDetails(err)
+		}
+
+		for i, rawEntry := range rsp.Entries {
+			rleindex := getFirst + int64(i)
+			rle, err := ct.RawLogEntryFromLeaf(rleindex, &rawEntry)
+			if err != nil {
+				fmt.Fprintf(outputFile, "Index=%d Failed to unmarshal leaf entry: %v\n", index, err)
+				continue
+			}
+			showRawLogEntry(rle)
+		}
+		index = getLast + 1
 	}
 
-	for i, rawEntry := range rsp.Entries {
-		index := getFirst + int64(i)
-		rle, err := ct.RawLogEntryFromLeaf(index, &rawEntry)
-		if err != nil {
-			fmt.Fprintf(outputFile, "Index=%d Failed to unmarshal leaf entry: %v\n", index, err)
-			continue
-		}
-		showRawLogEntry(rle)
-	}
 }
 
 func showRawLogEntry(rle *ct.RawLogEntry) {

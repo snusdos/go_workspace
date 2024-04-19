@@ -2,7 +2,7 @@ import requests
 
 
 def fetch_log_urls_and_save():
-    url = "https://www.gstatic.com/ct/log_list/v3/all_logs_list.json"
+    url = "https://www.gstatic.com/ct/log_list/v3/log_list.json"
     output_file = "log_urls.txt"
     
     try:
@@ -26,7 +26,6 @@ def fetch_log_urls_and_save():
     except requests.RequestException as e:
         return f"An error occurred: {e}"
 
-# Uncomment the following line to test the function after reviewing and finalizing
 fetch_log_urls_and_save()
 
 
