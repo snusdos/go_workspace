@@ -20,22 +20,24 @@ var (
 	logName         string
 	logList         string
 	//logURI          string	moved
-	pubKey     string
-	getFirst   int64
-	getLast    int64
-	chainOut   bool
-	textOut    bool
-	crlOut     bool
-	preOut     bool
-	outputFile *os.File
-	maxEntries int64
-	lock       sync.Mutex
+	pubKey      string
+	getFirst    int64
+	getLast     int64
+	chainOut    bool
+	textOut     bool
+	crlOut      bool
+	preOut      bool
+	sOutputFile *os.File
+	outputFile  *os.File
+	maxEntries  int64
+	lock        sync.Mutex
+	incInt      int64
 )
 
 /*
 TODO:
 1. seperate certifificates
-2. fixa SCT så jag kan välja specifika certifikat från loggarna
+2. fixa SCT så jag kan välja specifika certifikat från loggarna klar
 */
 func main() {
 	ctx := context.Background()
@@ -58,8 +60,8 @@ func main() {
 
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
 	chainOut = false       // Entire chain or only end/leaf in output
-	textOut = true         // .pem or .txt output
-	crlOut = true          // print only crl of cert. textout must be true
+	textOut = false        // .pem or .txt output
+	crlOut = false         // print only crl of cert. textout must be true
 	preOut = false         //include pres or not
 	getFirst = 0           // First index
 	getLast = 256          // Last index
@@ -179,26 +181,55 @@ func showRawCert(cert ct.ASN1Cert) {
 }
 
 func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 chain file, if not no chain files
+
+	lock.Lock()
+	defer lock.Unlock()
+	fileName := fmt.Sprintf("data/%x.pem", cert.SerialNumber)
+	sOutputFile, err := os.Create(fileName)
+	if err != nil {
+		fmt.Printf("Failed to create file: %s\n", err)
+
+	}
+	defer sOutputFile.Close()
+
+	certDetails := x509util.CertificateToString(cert)
+
 	if crlOut {
 		if len(cert.CRLDistributionPoints) > 0 {
-			lock.Lock()
+			//lock.Lock()
 			//fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints[0])
 			//fmt.Println(outputFile, "%s\n", cert.SCTList.SCTList)
-			lock.Unlock()
+			//lock.Unlock()
 		}
 	} else if textOut {
-		lock.Lock()
-		fmt.Fprintf(outputFile, "%s\n", x509util.CertificateToString(cert))
-		lock.Unlock()
+
+		if _, err := fmt.Fprintf(sOutputFile, "%s\n", certDetails); err != nil {
+			fmt.Printf("Failed to write to file: %v\n", err)
+			return
+		}
+
+		//fmt.Printf("formatted= %x \n", cert.SerialNumber)
+		//fmt.Fprintf(outputFile, "%s\n", x509util.CertificateToString(cert))
 	} else {
 		showPEMData(cert.Raw)
 	}
 }
 
 func showPEMData(data []byte) {
-	if err := pem.Encode(outputFile, &pem.Block{Type: "CERTIFICATE", Bytes: data}); err != nil {
+
+	lock.Lock()
+	defer lock.Unlock()
+	fileName := fmt.Sprintf("data/%d.pem", incInt)
+	sOutputFile, err := os.Create(fileName)
+	if err != nil {
+		fmt.Printf("Failed to create file: %s\n", err)
+	}
+	defer sOutputFile.Close()
+
+	if err := pem.Encode(sOutputFile, &pem.Block{Type: "CERTIFICATE", Bytes: data}); err != nil {
 		klog.Errorf("Failed to PEM encode cert: %q", err.Error())
 	}
+	incInt++
 }
 
 func millisToTime(ms int64) time.Time {
