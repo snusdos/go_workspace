@@ -58,8 +58,8 @@ func main() {
 
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
 	chainOut = false       // Entire chain or only end/leaf in output
-	textOut = false        // .pem or .txt output
-	crlOut = false         // print only crl of cert. textout must be true
+	textOut = true         // .pem or .txt output
+	crlOut = true          // print only crl of cert. textout must be true
 	preOut = false         //include pres or not
 	getFirst = 0           // First index
 	getLast = 256          // Last index
@@ -127,41 +127,37 @@ func runGetEntries(ctx context.Context, logURI string) {
 }
 
 func showRawLogEntry(rle *ct.RawLogEntry) {
-	ts := rle.Leaf.TimestampedEntry
-	when := ct.TimestampToTime(ts.Timestamp)
+	ts := rle.Leaf.TimestampedEntry          //timestamp
+	when := ct.TimestampToTime(ts.Timestamp) //translation of ts
+	msts := ts.Timestamp                     //millisecond timestamp
+	mstsTime := millisToTime(int64(msts))    //just the ms timestamp
+	year, week := mstsTime.ISOWeek()         //ISOWeek setup
 
-	msts := ts.Timestamp //millisecond timestamp
-	mstsTime := millisToTime(int64(msts))
+	if week == 6 || week == 32 { //only catch certs stamped within week 6 and 32.
+		//fmt.Printf("year%d Index=%d Timestamp=%d (%v) ", year, rle.Index, ts.Timestamp, when)
 
-	year, week := mstsTime.ISOWeek()
+		lock.Lock()
+		fmt.Fprintf(outputFile, "Index=%d year=%d  Timestamp=%d (%v) \n", rle.Index, year, ts.Timestamp, when)
+		lock.Unlock()
+		switch ts.EntryType {
+		case ct.X509LogEntryType:
+			//fmt.Fprintf(outputFile, "X.509 certificate:\n")
+			//fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
+			showRawCert(*ts.X509Entry)
 
-	if week == 6 || week == 32 {
-		fmt.Printf("year%d Index=%d Timestamp=%d (%v) ", year, rle.Index, ts.Timestamp, when)
-	}
-
-	//sct := rle.Leaf.SignedCertificateTimestamp()
-
-	//lock.Lock()
-	//fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
-	//lock.Unlock()
-	switch ts.EntryType {
-	case ct.X509LogEntryType:
-		//fmt.Fprintf(outputFile, "X.509 certificate:\n")
-		fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
-		showRawCert(*ts.X509Entry)
-
-	case ct.PrecertLogEntryType:
-		if preOut {
-			//fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
-			fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
-			showRawCert(rle.Cert)
+		case ct.PrecertLogEntryType:
+			if preOut {
+				//fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
+				//fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
+				showRawCert(rle.Cert)
+			}
+		default:
+			fmt.Fprintf(outputFile, "Unhandled log entry type %d\n", ts.EntryType)
 		}
-	default:
-		fmt.Fprintf(outputFile, "Unhandled log entry type %d\n", ts.EntryType)
-	}
-	if chainOut {
-		for _, c := range rle.Chain {
-			showRawCert(c)
+		if chainOut {
+			for _, c := range rle.Chain {
+				showRawCert(c)
+			}
 		}
 	}
 }
@@ -186,7 +182,7 @@ func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 cha
 	if crlOut {
 		if len(cert.CRLDistributionPoints) > 0 {
 			lock.Lock()
-			fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints[0])
+			//fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints[0])
 			//fmt.Println(outputFile, "%s\n", cert.SCTList.SCTList)
 			lock.Unlock()
 		}
