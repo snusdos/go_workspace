@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"sync"
+	"time"
 
 	ct "github.com/google/certificate-transparency-go"
 	"github.com/google/certificate-transparency-go/x509"
@@ -33,8 +34,8 @@ var (
 
 /*
 TODO:
- 1. implement way to increase entries gotten for each log
-    1.1 ex by repeating 255 gotten untill certain number of index for each log reached
+1. seperate certifificates
+2. fixa SCT så jag kan välja specifika certifikat från loggarna
 */
 func main() {
 	ctx := context.Background()
@@ -57,12 +58,12 @@ func main() {
 
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
 	chainOut = false       // Entire chain or only end/leaf in output
-	textOut = true         // .pem or .txt output
-	crlOut = true          // print only crl of cert. textout must be true
-	preOut = true          //include pres or not
+	textOut = false        // .pem or .txt output
+	crlOut = false         // print only crl of cert. textout must be true
+	preOut = false         //include pres or not
 	getFirst = 0           // First index
 	getLast = 256          // Last index
-	maxEntries = 1000000   //set max amount of entries for each log
+	maxEntries = 100       //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -96,7 +97,7 @@ func runGetEntries(ctx context.Context, logURI string) {
 
 		rsp, err := logClient.GetRawEntries(ctx, getFirst, getLast)
 		if err != nil {
-			fmt.Println("ERROR FROM: \n", logURI)
+			fmt.Println("ERROR FROM: ", logURI)
 			fmt.Println(err)
 			exitWithDetails(err)
 			index += dynInt
@@ -127,18 +128,32 @@ func runGetEntries(ctx context.Context, logURI string) {
 
 func showRawLogEntry(rle *ct.RawLogEntry) {
 	ts := rle.Leaf.TimestampedEntry
-	//when := ct.TimestampToTime(ts.Timestamp)
+	when := ct.TimestampToTime(ts.Timestamp)
+
+	msts := ts.Timestamp //millisecond timestamp
+	mstsTime := millisToTime(int64(msts))
+
+	year, week := mstsTime.ISOWeek()
+
+	if week == 6 || week == 32 {
+		fmt.Printf("year%d Index=%d Timestamp=%d (%v) ", year, rle.Index, ts.Timestamp, when)
+	}
+
+	//sct := rle.Leaf.SignedCertificateTimestamp()
+
 	//lock.Lock()
 	//fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
 	//lock.Unlock()
 	switch ts.EntryType {
 	case ct.X509LogEntryType:
 		//fmt.Fprintf(outputFile, "X.509 certificate:\n")
+		fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
 		showRawCert(*ts.X509Entry)
 
 	case ct.PrecertLogEntryType:
 		if preOut {
 			//fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
+			fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
 			showRawCert(rle.Cert)
 		}
 	default:
@@ -172,10 +187,13 @@ func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 cha
 		if len(cert.CRLDistributionPoints) > 0 {
 			lock.Lock()
 			fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints[0])
+			//fmt.Println(outputFile, "%s\n", cert.SCTList.SCTList)
 			lock.Unlock()
 		}
 	} else if textOut {
+		lock.Lock()
 		fmt.Fprintf(outputFile, "%s\n", x509util.CertificateToString(cert))
+		lock.Unlock()
 	} else {
 		showPEMData(cert.Raw)
 	}
@@ -185,4 +203,8 @@ func showPEMData(data []byte) {
 	if err := pem.Encode(outputFile, &pem.Block{Type: "CERTIFICATE", Bytes: data}); err != nil {
 		klog.Errorf("Failed to PEM encode cert: %q", err.Error())
 	}
+}
+
+func millisToTime(ms int64) time.Time {
+	return time.Unix(ms/1000, (ms%1000)*1000000)
 }
