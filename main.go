@@ -36,8 +36,7 @@ var (
 
 /*
 TODO:
-1. seperate certifificates
-2. fixa SCT så jag kan välja specifika certifikat från loggarna klar
+fixa 300000 entries per folderxd
 */
 func main() {
 	ctx := context.Background()
@@ -52,7 +51,7 @@ func main() {
 	defer outputFile.Close()
 
 	// Read logURIs from a file
-	file, err := os.Open("data/input.txt")
+	file, err := os.Open("data/subset.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
 	if err != nil {
 		klog.Exitf("Failed to read log URI file: %v", err)
 	}
@@ -60,12 +59,12 @@ func main() {
 
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
 	chainOut = false       // Entire chain or only end/leaf in output
-	textOut = false        // .pem or .txt output
+	textOut = true         // .pem or .txt output
 	crlOut = false         // print only crl of cert. textout must be true
 	preOut = false         //include pres or not
 	getFirst = 0           // First index
 	getLast = 256          // Last index
-	maxEntries = 100       //set max amount of entries for each log
+	maxEntries = 1000000   //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -129,18 +128,18 @@ func runGetEntries(ctx context.Context, logURI string) {
 }
 
 func showRawLogEntry(rle *ct.RawLogEntry) {
-	ts := rle.Leaf.TimestampedEntry          //timestamp
-	when := ct.TimestampToTime(ts.Timestamp) //translation of ts
-	msts := ts.Timestamp                     //millisecond timestamp
-	mstsTime := millisToTime(int64(msts))    //just the ms timestamp
-	year, week := mstsTime.ISOWeek()         //ISOWeek setup
+	ts := rle.Leaf.TimestampedEntry //timestamp
+	//when := ct.TimestampToTime(ts.Timestamp) //translation of ts
+	msts := ts.Timestamp                  //millisecond timestamp
+	mstsTime := millisToTime(int64(msts)) //just the ms timestamp
+	_, week := mstsTime.ISOWeek()         //ISOWeek setup
 
 	if week == 6 || week == 32 { //only catch certs stamped within week 6 and 32.
 		//fmt.Printf("year%d Index=%d Timestamp=%d (%v) ", year, rle.Index, ts.Timestamp, when)
 
-		lock.Lock()
-		fmt.Fprintf(outputFile, "Index=%d year=%d  Timestamp=%d (%v) \n", rle.Index, year, ts.Timestamp, when)
-		lock.Unlock()
+		//lock.Lock()
+		//fmt.Fprintf(outputFile, "Index=%d year=%d  Timestamp=%d (%v) \n", rle.Index, year, ts.Timestamp, when)
+		//lock.Unlock()
 		switch ts.EntryType {
 		case ct.X509LogEntryType:
 			//fmt.Fprintf(outputFile, "X.509 certificate:\n")
@@ -184,7 +183,7 @@ func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 cha
 
 	lock.Lock()
 	defer lock.Unlock()
-	fileName := fmt.Sprintf("data/%x.pem", cert.SerialNumber)
+	fileName := fmt.Sprintf("e:/certslol/%x.pem", cert.SerialNumber)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
@@ -219,7 +218,7 @@ func showPEMData(data []byte) {
 
 	lock.Lock()
 	defer lock.Unlock()
-	fileName := fmt.Sprintf("data/%d.pem", incInt)
+	fileName := fmt.Sprintf("e:/certslol/%d.pem", incInt)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
