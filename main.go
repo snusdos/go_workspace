@@ -19,24 +19,26 @@ var (
 	skipHTTPSVerify bool
 	logName         string
 	logList         string
-	//logURI          string	moved
-	pubKey      string
-	getFirst    int64
-	getLast     int64
-	chainOut    bool
-	textOut     bool
-	crlOut      bool
-	preOut      bool
-	sOutputFile *os.File
-	outputFile  *os.File
-	maxEntries  int64
-	lock        sync.Mutex
-	incInt      int64
+	pubKey          string
+	getFirst        int64
+	getLast         int64
+	chainOut        bool
+	textOut         bool
+	crlOut          bool
+	preOut          bool
+	sOutputFile     *os.File
+	outputFile      *os.File
+	maxEntries      int64
+	lock            sync.Mutex
+	incInt          int64
 )
 
 /*
 TODO:
-fixa 300000 entries per folderxd
+0. fix kill on max entries for tree.
+1. create map, save hex values to elim dupes.
+2. fixa folders för entries för att hantera massa filer KANSKE? https://forums.codeguru.com/showthread.php?390838-How-many-files-can-a-folder-contain
+3. clean up
 */
 func main() {
 	ctx := context.Background()
@@ -62,9 +64,9 @@ func main() {
 	textOut = true         // .pem or .txt output
 	crlOut = false         // print only crl of cert. textout must be true
 	preOut = false         //include pres or not
-	getFirst = 0           // First index
-	getLast = 256          // Last index
-	maxEntries = 1000000   //set max amount of entries for each log
+	getFirst = 0           // First index	unsused
+	getLast = 256          // Last index unsused
+	maxEntries = 1000      //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -87,12 +89,12 @@ func main() {
 func runGetEntries(ctx context.Context, logURI string) {
 	logClient := connect(ctx, logURI)
 	index := int64(0)
-	dynInt := int64(256)
+	dynInt := int64(1000) //start val for dynInt
 	for index < maxEntries {
 		getFirst := index
 		getLast := index + dynInt - 1
 
-		if getLast >= maxEntries {
+		if getLast >= maxEntries { //trash needs remake but not important
 			getLast = maxEntries - 1
 		}
 
@@ -102,10 +104,13 @@ func runGetEntries(ctx context.Context, logURI string) {
 			fmt.Println(err)
 			exitWithDetails(err)
 			index += dynInt
-			continue
+			return //RETURN OR CONTINUE need kill rutine here
 		}
 
 		entriesReturned := int64(len(rsp.Entries))
+		fmt.Printf("entriesReturned: %v LOG: %s", entriesReturned, logURI)
+		fmt.Println("getLast: ", getLast)
+		fmt.Println("dynInt: ", dynInt)
 		if entriesReturned == 0 { // No more entries to process
 			break
 		}
@@ -117,7 +122,7 @@ func runGetEntries(ctx context.Context, logURI string) {
 				fmt.Fprintf(outputFile, "Index=%d Failed to unmarshal leaf entry: %v\n", index, err)
 				continue
 			}
-			showRawLogEntry(rle)
+			showRawLogEntry(rle, logURI)
 		}
 		index += entriesReturned      //update index based off actual entries returned
 		if entriesReturned < dynInt { //check for
@@ -127,27 +132,29 @@ func runGetEntries(ctx context.Context, logURI string) {
 	}
 }
 
-func showRawLogEntry(rle *ct.RawLogEntry) {
-	ts := rle.Leaf.TimestampedEntry //timestamp
-	//when := ct.TimestampToTime(ts.Timestamp) //translation of ts
-	msts := ts.Timestamp                  //millisecond timestamp
-	mstsTime := millisToTime(int64(msts)) //just the ms timestamp
-	_, week := mstsTime.ISOWeek()         //ISOWeek setup
-
-	if week == 6 || week == 32 { //only catch certs stamped within week 6 and 32.
+func showRawLogEntry(rle *ct.RawLogEntry, logURI string) {
+	ts := rle.Leaf.TimestampedEntry          //timestamp
+	when := ct.TimestampToTime(ts.Timestamp) //translation of ts
+	msts := ts.Timestamp                     //millisecond timestamp
+	mstsTime := millisToTime(int64(msts))    //just the ms timestamp
+	year, week := mstsTime.ISOWeek()         //ISOWeek setup
+	if week == 6 || week == 32 {             //only catch certs stamped within week 6 and 32.
 		//fmt.Printf("year%d Index=%d Timestamp=%d (%v) ", year, rle.Index, ts.Timestamp, when)
 
-		//lock.Lock()
-		//fmt.Fprintf(outputFile, "Index=%d year=%d  Timestamp=%d (%v) \n", rle.Index, year, ts.Timestamp, when)
-		//lock.Unlock()
 		switch ts.EntryType {
 		case ct.X509LogEntryType:
+			lock.Lock()
+			fmt.Fprintf(outputFile, "Index=%d year=%d  Timestamp=%d (%v) LOG=%s \n", rle.Index, year, ts.Timestamp, when, logURI)
+			lock.Unlock()
 			//fmt.Fprintf(outputFile, "X.509 certificate:\n")
 			//fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
 			showRawCert(*ts.X509Entry)
 
 		case ct.PrecertLogEntryType:
 			if preOut {
+				lock.Lock()
+				fmt.Fprintf(outputFile, "Index=%d year=%d  Timestamp=%d (%v) LOG=%s \n", rle.Index, year, ts.Timestamp, when, logURI)
+				lock.Unlock()
 				//fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
 				//fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
 				showRawCert(rle.Cert)
@@ -155,6 +162,7 @@ func showRawLogEntry(rle *ct.RawLogEntry) {
 		default:
 			fmt.Fprintf(outputFile, "Unhandled log entry type %d\n", ts.EntryType)
 		}
+		fmt.Println("")
 		if chainOut {
 			for _, c := range rle.Chain {
 				showRawCert(c)
@@ -197,7 +205,6 @@ func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 cha
 		if len(cert.CRLDistributionPoints) > 0 {
 			//lock.Lock()
 			//fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints[0])
-			//fmt.Println(outputFile, "%s\n", cert.SCTList.SCTList)
 			//lock.Unlock()
 		}
 	} else if textOut {
