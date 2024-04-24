@@ -12,6 +12,7 @@ import (
 	ct "github.com/google/certificate-transparency-go"
 	"github.com/google/certificate-transparency-go/x509"
 	"github.com/google/certificate-transparency-go/x509util"
+	"github.com/schollz/progressbar/v3"
 	"k8s.io/klog"
 )
 
@@ -35,15 +36,13 @@ var (
 
 /*
 TODO:
-0. fix kill on max entries for tree.
 1. create map, save hex values to elim dupes.
 2. fixa folders för entries för att hantera massa filer KANSKE? https://forums.codeguru.com/showthread.php?390838-How-many-files-can-a-folder-contain
-3. clean up
+3. clean up, add progressbars for each log
 */
 func main() {
 	ctx := context.Background()
 	var wg sync.WaitGroup // WaitGroup to manage concurrency
-
 	// Open output file
 	var err error
 	outputFile, err = os.Create("data/output.txt")
@@ -61,12 +60,12 @@ func main() {
 
 	skipHTTPSVerify = true // Skip verification of chain and hostname or not
 	chainOut = false       // Entire chain or only end/leaf in output
-	textOut = true         // .pem or .txt output
-	crlOut = false         // print only crl of cert. textout must be true
-	preOut = false         //include pres or not
-	getFirst = 0           // First index	unsused
-	getLast = 256          // Last index unsused
-	maxEntries = 1000      //set max amount of entries for each log
+	textOut = false        // .pem or .txt output
+	//crlOut = false          // print only crl of cert. textout must be true
+	preOut = false      //include pres or not
+	getFirst = 0        // First index	unsused
+	getLast = 256       // Last index unsused
+	maxEntries = 100000 //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -87,6 +86,18 @@ func main() {
 }
 
 func runGetEntries(ctx context.Context, logURI string) {
+
+	bar := progressbar.NewOptions64(
+		maxEntries,
+		progressbar.OptionSetDescription("Processing log: "+logURI),
+		progressbar.OptionSetWriter(os.Stderr), // Display progress in the standard error to avoid mixing with other output
+		progressbar.OptionShowCount(),
+		progressbar.OptionSetWidth(30),
+		progressbar.OptionThrottle(65*time.Millisecond),
+		progressbar.OptionShowIts(),
+		progressbar.OptionSpinnerType(14),
+	)
+
 	logClient := connect(ctx, logURI)
 	index := int64(0)
 	dynInt := int64(1000) //start val for dynInt
@@ -104,18 +115,16 @@ func runGetEntries(ctx context.Context, logURI string) {
 			fmt.Println(err)
 			exitWithDetails(err)
 			index += dynInt
-			return //RETURN OR CONTINUE need kill rutine here
+			return //RETURN to kill routine
 		}
 
 		entriesReturned := int64(len(rsp.Entries))
-		fmt.Printf("entriesReturned: %v LOG: %s", entriesReturned, logURI)
-		fmt.Println("getLast: ", getLast)
-		fmt.Println("dynInt: ", dynInt)
 		if entriesReturned == 0 { // No more entries to process
 			break
 		}
 
 		for i, rawEntry := range rsp.Entries {
+			bar.Add(i)
 			rleindex := getFirst + int64(i)
 			rle, err := ct.RawLogEntryFromLeaf(rleindex, &rawEntry)
 			if err != nil {
@@ -130,6 +139,7 @@ func runGetEntries(ctx context.Context, logURI string) {
 		}
 
 	}
+	bar.Finish()
 }
 
 func showRawLogEntry(rle *ct.RawLogEntry, logURI string) {
@@ -139,8 +149,6 @@ func showRawLogEntry(rle *ct.RawLogEntry, logURI string) {
 	mstsTime := millisToTime(int64(msts))    //just the ms timestamp
 	year, week := mstsTime.ISOWeek()         //ISOWeek setup
 	if week == 6 || week == 32 {             //only catch certs stamped within week 6 and 32.
-		//fmt.Printf("year%d Index=%d Timestamp=%d (%v) ", year, rle.Index, ts.Timestamp, when)
-
 		switch ts.EntryType {
 		case ct.X509LogEntryType:
 			lock.Lock()
@@ -155,14 +163,11 @@ func showRawLogEntry(rle *ct.RawLogEntry, logURI string) {
 				lock.Lock()
 				fmt.Fprintf(outputFile, "Index=%d year=%d  Timestamp=%d (%v) LOG=%s \n", rle.Index, year, ts.Timestamp, when, logURI)
 				lock.Unlock()
-				//fmt.Fprintf(outputFile, "pre-certificate from issuer with keyhash %x:\n", ts.PrecertEntry.IssuerKeyHash)
-				//fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
 				showRawCert(rle.Cert)
 			}
 		default:
 			fmt.Fprintf(outputFile, "Unhandled log entry type %d\n", ts.EntryType)
 		}
-		fmt.Println("")
 		if chainOut {
 			for _, c := range rle.Chain {
 				showRawCert(c)
@@ -189,8 +194,6 @@ func showRawCert(cert ct.ASN1Cert) {
 
 func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 chain file, if not no chain files
 
-	lock.Lock()
-	defer lock.Unlock()
 	fileName := fmt.Sprintf("e:/certslol/%x.pem", cert.SerialNumber)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
@@ -201,19 +204,11 @@ func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 cha
 
 	certDetails := x509util.CertificateToString(cert)
 
-	if crlOut {
-		if len(cert.CRLDistributionPoints) > 0 {
-			//lock.Lock()
-			//fmt.Fprintf(outputFile, "%s\n", cert.CRLDistributionPoints[0])
-			//lock.Unlock()
-		}
-	} else if textOut {
-
+	if textOut {
 		if _, err := fmt.Fprintf(sOutputFile, "%s\n", certDetails); err != nil {
 			fmt.Printf("Failed to write to file: %v\n", err)
 			return
 		}
-
 		//fmt.Printf("formatted= %x \n", cert.SerialNumber)
 		//fmt.Fprintf(outputFile, "%s\n", x509util.CertificateToString(cert))
 	} else {
@@ -222,20 +217,18 @@ func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 cha
 }
 
 func showPEMData(data []byte) {
-
-	lock.Lock()
-	defer lock.Unlock()
 	fileName := fmt.Sprintf("e:/certslol/%d.pem", incInt)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
 	}
 	defer sOutputFile.Close()
-
+	lock.Lock()
 	if err := pem.Encode(sOutputFile, &pem.Block{Type: "CERTIFICATE", Bytes: data}); err != nil {
 		klog.Errorf("Failed to PEM encode cert: %q", err.Error())
 	}
 	incInt++
+	lock.Unlock()
 }
 
 func millisToTime(ms int64) time.Time {
