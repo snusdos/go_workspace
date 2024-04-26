@@ -62,10 +62,10 @@ func main() {
 	chainOut = false       // Entire chain or only end/leaf in output
 	textOut = false        // .pem or .txt output
 	//crlOut = false          // print only crl of cert. textout must be true
-	preOut = false      //include pres or not
-	getFirst = 0        // First index	unsused
-	getLast = 256       // Last index unsused
-	maxEntries = 100000 //set max amount of entries for each log
+	preOut = false          //include pres or not
+	getFirst = 0            // First index	unsused
+	getLast = 256           // Last index unsused
+	maxEntries = 5000000000 //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {

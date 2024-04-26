@@ -20,7 +20,7 @@ func exitWithDetails(err error) {
 	if err, ok := err.(client.RspError); ok {
 		klog.Infof("HTTP details: status=%d, body:\n%s", err.StatusCode, err.Body)
 	}
-	klog.Error(err.Error()) //klog.Exit(err.Error())
+	klog.Error(err.Error()) //klog.exit(err.Error())
 }
 
 func connect(_ context.Context, logURI string) *client.LogClient {
@@ -36,13 +36,13 @@ func connect(_ context.Context, logURI string) *client.LogClient {
 			ResponseHeaderTimeout: 30 * time.Second,
 			MaxIdleConnsPerHost:   10,
 			DisableKeepAlives:     false,
-			MaxIdleConns:          100,
+			MaxIdleConns:          100, //try with more
 			IdleConnTimeout:       90 * time.Second,
 			ExpectContinueTimeout: 1 * time.Second,
 			TLSClientConfig:       tlsCfg,
 		},
 	}
-	opts := jsonclient.Options{UserAgent: "ct-go-ctclient/1.0"}
+	opts := jsonclient.Options{UserAgent: "ct-go-ctclient/1.0"} //try without.
 	if pubKey != "" {
 		pubkey, err := os.ReadFile(pubKey)
 		if err != nil {
