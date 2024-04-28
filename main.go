@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/pem"
 	"fmt"
+	"math"
 	"os"
 	"sync"
 	"time"
@@ -36,9 +37,9 @@ var (
 
 /*
 TODO:
-1. create map, save hex values to elim dupes.
+1. Go rutines inom varje log på olika index
 2. fixa folders för entries för att hantera massa filer KANSKE? https://forums.codeguru.com/showthread.php?390838-How-many-files-can-a-folder-contain
-3. clean up, add progressbars for each log
+3. ordna certs i folders efter year ev...
 */
 func main() {
 	ctx := context.Background()
@@ -65,7 +66,7 @@ func main() {
 	preOut = false          //include pres or not
 	getFirst = 0            // First index	unsused
 	getLast = 256           // Last index unsused
-	maxEntries = 5000000000 //set max amount of entries for each log
+	maxEntries = 1835993885 //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -99,6 +100,14 @@ func runGetEntries(ctx context.Context, logURI string) {
 	)
 
 	logClient := connect(ctx, logURI)
+
+	sth, err := logClient.GetSTH(ctx) //getSTH to get TreeSize for k
+	if err != nil {
+		fmt.Println("STH ERROR FROM: ", logURI)
+	}
+	fmt.Printf("STH: %v\n", sth.TreeSize)
+	treeSize := sth.TreeSize
+
 	index := int64(0)
 	dynInt := int64(1000) //start val for dynInt
 	for index < maxEntries {
@@ -119,12 +128,12 @@ func runGetEntries(ctx context.Context, logURI string) {
 		}
 
 		entriesReturned := int64(len(rsp.Entries))
+		//bar.Add(int(entriesReturned)) //update progbar
 		if entriesReturned == 0 { // No more entries to process
 			break
 		}
 
 		for i, rawEntry := range rsp.Entries {
-			bar.Add(i)
 			rleindex := getFirst + int64(i)
 			rle, err := ct.RawLogEntryFromLeaf(rleindex, &rawEntry)
 			if err != nil {
@@ -133,7 +142,12 @@ func runGetEntries(ctx context.Context, logURI string) {
 			}
 			showRawLogEntry(rle, logURI)
 		}
-		index += entriesReturned      //update index based off actual entries returned
+		index += entriesReturned //update index based off actual entries returned
+		//k := int64(calcK(int64(treeSize)))
+		index += int64(calcK(int64(treeSize))) //int64))
+		fmt.Printf("K : %v\n", int64(calcK(int64(treeSize))))
+
+		bar.Set64(index)              //update progbar
 		if entriesReturned < dynInt { //check for
 			dynInt = entriesReturned
 		}
@@ -194,7 +208,7 @@ func showRawCert(cert ct.ASN1Cert) {
 
 func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 chain file, if not no chain files
 
-	fileName := fmt.Sprintf("e:/certslol/%x.pem", cert.SerialNumber)
+	fileName := fmt.Sprintf("/Users/simonstensson/Projects/go_workspace/data/certs/%x.pem", cert.SerialNumber)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
@@ -217,7 +231,7 @@ func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 cha
 }
 
 func showPEMData(data []byte) {
-	fileName := fmt.Sprintf("e:/certslol/%d.pem", incInt)
+	fileName := fmt.Sprintf("/Users/simonstensson/Projects/go_workspace/data/certs/%d.pem", incInt)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
@@ -233,4 +247,16 @@ func showPEMData(data []byte) {
 
 func millisToTime(ms int64) time.Time {
 	return time.Unix(ms/1000, (ms%1000)*1000000)
+}
+
+func calcK(n int64) float64 { //func to create a k val logaritmicly increasing
+	var multiplier float64 = 3000
+	var c float64 = -23000
+	k := multiplier*math.Log10(float64(n)) + c //n wont be zero
+	k = math.Floor(k)
+	if k <= 0 {
+		return 0
+	} else {
+		return k
+	}
 }

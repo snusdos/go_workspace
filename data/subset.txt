@@ -1,0 +1,1 @@
+https://ct.googleapis.com/logs/argon2023/

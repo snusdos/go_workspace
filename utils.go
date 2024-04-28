@@ -42,7 +42,7 @@ func connect(_ context.Context, logURI string) *client.LogClient {
 			TLSClientConfig:       tlsCfg,
 		},
 	}
-	opts := jsonclient.Options{UserAgent: "ct-go-ctclient/1.0"} //try without.
+	opts := jsonclient.Options{UserAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15"} //try without 3min fast for 400k cert xenon2018 log.
 	if pubKey != "" {
 		pubkey, err := os.ReadFile(pubKey)
 		if err != nil {

@@ -1,1 +1,8 @@
 make sure to not have a extra line in input.txt
+
+-färre logs
+-segmentera logsen för att 
+
+log10(100 000) = 5
+log10(100 000 000) = 8
+log10(1 000 000 000) = 9 

@@ -26,4 +26,4 @@ def getTotalCerts(file_path):
 
     print(f"Total certs -> {format_number(total_certs)}")
 
-getTotalCerts("C:/Users/simon/go_workspace/data/subset.txt")
+getTotalCerts("/Users/simonstensson/Projects/go_workspace/data/log_urls.txt")
