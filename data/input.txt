@@ -27,7 +27,6 @@ https://nessie2022.ct.digicert.com/log/
 https://nessie2023.ct.digicert.com/log/
 https://nessie2024.ct.digicert.com/log/
 https://nessie2025.ct.digicert.com/log/
-https://sabre.ct.comodo.com/
 https://sabre2024h1.ct.sectigo.com/
 https://sabre2024h2.ct.sectigo.com/
 https://sabre2025h1.ct.sectigo.com/

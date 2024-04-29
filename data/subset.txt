@@ -1,10 +1,3 @@
-make sure to not have a extra line in input.txt
-input.txt is clean from deadlinks 240419
-
-
-
-
-48 logs list
 https://ct.googleapis.com/logs/argon2020/
 https://ct.googleapis.com/logs/argon2021/
 https://ct.googleapis.com/logs/argon2022/

@@ -65,7 +65,7 @@ func main() {
 	preOut = false          //include pres or not
 	getFirst = 0            // First index	unsused
 	getLast = 256           // Last index unsused
-	maxEntries = 5000000000 //set max amount of entries for each log
+	maxEntries = 2500000000 //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -99,7 +99,7 @@ func runGetEntries(ctx context.Context, logURI string) {
 	)
 
 	logClient := connect(ctx, logURI)
-	index := int64(0)
+	index := int64(80000) //place to start on log
 	dynInt := int64(1000) //start val for dynInt
 	for index < maxEntries {
 		getFirst := index
@@ -124,7 +124,7 @@ func runGetEntries(ctx context.Context, logURI string) {
 		}
 
 		for i, rawEntry := range rsp.Entries {
-			bar.Add(i)
+			//bar.Add(i) //more this below to save some cycles
 			rleindex := getFirst + int64(i)
 			rle, err := ct.RawLogEntryFromLeaf(rleindex, &rawEntry)
 			if err != nil {
@@ -133,8 +133,9 @@ func runGetEntries(ctx context.Context, logURI string) {
 			}
 			showRawLogEntry(rle, logURI)
 		}
-		index += entriesReturned      //update index based off actual entries returned
-		if entriesReturned < dynInt { //check for
+		index += entriesReturned //update index based off actual entries returned
+		bar.Add(int(entriesReturned))
+		if entriesReturned < dynInt { //dynamic bit:)
 			dynInt = entriesReturned
 		}
 
