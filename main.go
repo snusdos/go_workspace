@@ -53,7 +53,7 @@ func main() {
 	defer outputFile.Close()
 
 	// Read logURIs from a file
-	file, err := os.Open("data/subset.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
+	file, err := os.Open("data/input.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
 	if err != nil {
 		klog.Exitf("Failed to read log URI file: %v", err)
 	}
@@ -145,8 +145,7 @@ func runGetEntries(ctx context.Context, logURI string) {
 		index += entriesReturned //update index based off actual entries returned
 		//k := int64(calcK(int64(treeSize)))
 		index += int64(calcK(int64(treeSize))) //int64))
-		fmt.Printf("K : %v\n", int64(calcK(int64(treeSize))))
-
+		//fmt.Printf("K : %v\n", int64(calcK(int64(treeSize))))
 		bar.Set64(index)              //update progbar
 		if entriesReturned < dynInt { //check for
 			dynInt = entriesReturned
