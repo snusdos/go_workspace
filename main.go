@@ -53,7 +53,7 @@ func main() {
 	defer outputFile.Close()
 
 	// Read logURIs from a file
-	file, err := os.Open("data/subset.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
+	file, err := os.Open("data/input.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
 	if err != nil {
 		klog.Exitf("Failed to read log URI file: %v", err)
 	}
@@ -66,7 +66,7 @@ func main() {
 	preOut = false          //include pres or not
 	getFirst = 0            // First index	unsused
 	getLast = 256           // Last index unsused
-	maxEntries = 2500000000 //set max amount of entries for each log
+	maxEntries = 1835993885 //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -100,7 +100,15 @@ func runGetEntries(ctx context.Context, logURI string) {
 	)
 
 	logClient := connect(ctx, logURI)
-	index := int64(80000) //place to start on log
+
+	sth, err := logClient.GetSTH(ctx) //getSTH to get TreeSize for k
+	if err != nil {
+		fmt.Println("STH ERROR FROM: ", logURI)
+	}
+	fmt.Printf("STH: %v\n", sth.TreeSize)
+	treeSize := sth.TreeSize
+
+	index := int64(0)
 	dynInt := int64(1000) //start val for dynInt
 	for index < maxEntries {
 		getFirst := index
@@ -126,7 +134,6 @@ func runGetEntries(ctx context.Context, logURI string) {
 		}
 
 		for i, rawEntry := range rsp.Entries {
-			//bar.Add(i) //more this below to save some cycles
 			rleindex := getFirst + int64(i)
 			rle, err := ct.RawLogEntryFromLeaf(rleindex, &rawEntry)
 			if err != nil {
@@ -136,8 +143,11 @@ func runGetEntries(ctx context.Context, logURI string) {
 			showRawLogEntry(rle, logURI)
 		}
 		index += entriesReturned //update index based off actual entries returned
-		bar.Add(int(entriesReturned))
-		if entriesReturned < dynInt { //dynamic bit:)
+		//k := int64(calcK(int64(treeSize)))
+		index += int64(calcK(int64(treeSize))) //int64))
+		//fmt.Printf("K : %v\n", int64(calcK(int64(treeSize))))
+		bar.Set64(index)              //update progbar
+		if entriesReturned < dynInt { //check for
 			dynInt = entriesReturned
 		}
 
