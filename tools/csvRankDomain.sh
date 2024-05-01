@@ -11,7 +11,7 @@ gcc -std=c99 tools/c_scripts/getBasics.c -O3 -o tools/c_scripts/getBasics
 
 for f in data/text/*;
 do
-    basic_info=$(scripts/c_scripts/getBasics "$f")
+    basic_info=$(tools/c_scripts/getBasics "$f")
     base_filename="${f##*/}"
     fname="${base_filename%.txt}"
     printf "%s\t%s\t%s\n" "$fname" "$basic_info" >> result.csv
