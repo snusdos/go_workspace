@@ -53,7 +53,7 @@ func main() {
 	defer outputFile.Close()
 
 	// Read logURIs from a file
-	file, err := os.Open("data/input.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
+	file, err := os.Open("data/subset.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
 	if err != nil {
 		klog.Exitf("Failed to read log URI file: %v", err)
 	}
@@ -66,7 +66,7 @@ func main() {
 	preOut = false          //include pres or not
 	getFirst = 0            // First index	unsused
 	getLast = 256           // Last index unsused
-	maxEntries = 1835993885 //set max amount of entries for each log
+	maxEntries = 2110000000 //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
