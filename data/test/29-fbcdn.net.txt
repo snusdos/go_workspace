@@ -1,0 +1,83 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            08:6b:72:a6:a4:79:2f:a3:37:33:38:2f:6f:4a:0c:40
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert SHA2 High Assurance Server CA
+        Validity
+            Not Before: Dec  8 00:00:00 2023 GMT
+            Not After : Mar  7 23:59:59 2024 GMT
+        Subject: C=US, ST=California, L=Menlo Park, O=Meta Platforms, Inc., CN=fbcdn.net
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:a9:7f:68:40:5a:9c:d2:3a:15:5e:14:ab:73:ed:
+                    76:be:36:c9:90:b0:3c:84:28:63:aa:06:b6:75:55:
+                    67:e0:cc:a1:63:92:5d:5c:a4:d1:da:76:08:17:1c:
+                    ed:97:36:50:8b:94:75:ff:0c:4b:85:2a:a5:9c:03:
+                    60:ce:47:d2:14:c0:ec:4d:70:02:7b:f9:bc:6d:20:
+                    7c:21:ca:15:57:ac:2f:00:a4:00:2f:83:43:9a:6a:
+                    3a:4d:49:30:cf:ae:a3:78:f4:93:57:46:d9:48:d9:
+                    e6:fd:e5:7b:8f:88:92:8b:30:91:7d:03:2d:71:75:
+                    87:c6:b7:d9:4d:c5:b4:c5:bb:b5:a5:98:ca:e6:de:
+                    83:8c:e5:23:9c:a6:ee:2f:5f:7c:5a:81:8f:43:92:
+                    4e:74:35:6f:05:3b:97:37:ec:ee:91:e2:c2:82:90:
+                    b6:9e:d0:22:34:b7:b1:b4:ab:a3:1b:ed:b0:c4:1c:
+                    e6:fd:de:e1:3e:c3:57:02:77:63:03:0d:4c:72:5e:
+                    77:63:58:67:ce:ef:71:ae:80:ee:d0:d6:cc:62:84:
+                    3f:44:e0:0e:a3:d8:be:84:bb:57:51:ac:59:1f:1c:
+                    79:68:10:79:b4:95:36:cb:20:18:92:68:7c:b8:e2:
+                    c4:d0:0b:82:fe:ff:87:c9:ed:ed:09:bb:95:1c:4f:
+                    af:8b
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Authority Key Identifier: 
+                keyid:51:68:FF:90:AF:02:07:75:3C:CC:D9:65:64:62:A2:12:B8:59:72:3B
+
+            X509v3 Subject Key Identifier: 
+                89:05:3B:C5:86:D1:57:F3:3C:36:61:CE:FF:71:83:75:33:0D:C7:32
+            X509v3 Subject Alternative Name: 
+                DNS:fbcdn.net, DNS:fbsbx.com, DNS:www.fbcdn.net
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.2
+                  CPS: http://www.digicert.com/CPS
+
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl3.digicert.com/sha2-ha-server-g6.crl
+
+                Full Name:
+                  URI:http://crl4.digicert.com/sha2-ha-server-g6.crl
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.digicert.com
+                CA Issuers - URI:http://cacerts.digicert.com/DigiCertSHA2HighAssuranceServerCA.crt
+
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            1.3.6.1.4.1.11129.2.4.2: 
+                ...k.i.w....d.....\......2.F|....QHYFq.......F........H0F.!...w.W0.e.>..-......QL..F..>.
+..D.!..= .A..a.."...gn..r.....s...!..".u.H..k..G4..j...0..R..V.,.....9..s....F........F0D. ."r9Y....?H....j2u.+f2...\.K..=.. %.H..@.7..H?J..,..6..".....D\....w....k?.."....\k.p.ql.Q..4..=0H.......F........H0F.!.......k....tl.....%.hY)....4A..I.!...p....H..YT.$.......~.~.>.....M
+    Signature Algorithm: sha256WithRSAEncryption
+         24:cd:7e:79:3c:5c:11:c2:17:f7:39:3a:ab:81:f8:c2:db:a8:
+         74:e5:55:f7:41:f9:a8:2f:6a:6b:e5:17:1f:92:8f:e7:9a:e6:
+         94:a8:a0:be:14:f9:28:07:c5:aa:28:0c:55:94:25:bd:5b:99:
+         db:aa:7d:f3:47:5c:a6:82:52:47:3e:a5:58:28:04:7a:35:1c:
+         66:d6:eb:e1:21:d7:6b:d6:e9:ef:80:e3:cf:a1:c0:39:5b:5c:
+         c1:55:ae:fe:f8:91:93:76:29:74:73:66:68:7d:5f:39:e6:8d:
+         05:90:e4:7b:1a:06:91:7e:a2:10:d3:3b:8b:83:1f:e5:e0:e9:
+         2c:11:95:de:7c:99:2a:20:02:7b:ab:70:8d:31:cb:b7:d8:ae:
+         1a:97:21:cc:c3:99:ce:d6:ed:e4:1b:66:70:62:9b:9e:f4:4e:
+         9f:04:40:f6:25:91:04:b8:08:80:35:a6:da:7c:59:76:9f:2d:
+         8f:c3:e3:a4:dd:82:a3:51:5d:10:a6:d2:20:a7:5b:5a:cc:9e:
+         ec:1f:59:3c:ca:40:cd:c2:cb:b2:e6:41:ce:fb:8d:a3:d2:ed:
+         cb:fd:54:9f:46:37:04:ed:cd:d0:e1:47:b4:b7:c8:f7:d0:25:
+         76:58:3a:b3:61:68:63:6d:9d:04:be:64:de:57:e0:16:94:7a:
+         21:3d:28:a5

@@ -97,24 +97,23 @@ char *getStrSameLine(char *line, char *pattern) {
     // From our starting index, we add each char 
     // and continue until we reach a newline or a comma (or null terminator).
     for (int i = start_index; i < strlen(line); i++) {      
-        if (line[i] == '\n' || line[i] == '\0' || line[i] == ',') {
-            if(quote == 1) {
-                 pattern_val[pattern_len++] = line[i];
-                 continue;
-            }
-            break;
-        } else if (line[i])
-        if (line[i] == '"') {
-            quote++;
-            if(quote == 1) {
-                continue;
-            } else if (quote == 2) {
-                break;
-            }
-        } else {
+    if (line[i] == '\n' || line[i] == '\0' || line[i] == ',') {
+        if (quote == 1) {
             pattern_val[pattern_len++] = line[i];
+            continue; 
         }
+        break;  
+    } else if (line[i] == '"') {
+        quote++;
+        if (quote == 1) {
+            continue;  
+        } else if (quote == 2) {
+            break;  
+        }
+    } else {
+        pattern_val[pattern_len++] = line[i];
     }
+}
 
     // Add null terminator at end of string, realloc then return string.
     pattern_val[pattern_len] = '\0';

@@ -1,0 +1,102 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            33:00:18:55:a4:ef:14:8c:f5:3c:1a:48:a8:00:00:00:18:55:a4
+    Signature Algorithm: sha384WithRSAEncryption
+        Issuer: C=US, O=Microsoft Corporation, CN=Microsoft Azure RSA TLS Issuing CA 03
+        Validity
+            Not Before: Dec 18 22:25:03 2023 GMT
+            Not After : Dec 12 22:25:03 2024 GMT
+        Subject: C=US, ST=WA, L=Redmond, O=Microsoft Corporation, CN=microsoft.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:a5:db:2a:c3:9d:36:df:69:07:1c:bf:de:38:7a:
+                    e2:06:c7:7f:70:83:21:79:03:4e:1c:cc:2a:8f:e5:
+                    4a:26:5d:0a:0f:4d:5a:02:7d:ab:f3:8a:24:66:bc:
+                    07:34:3b:f8:1c:28:eb:e7:2f:42:a0:4a:bb:01:68:
+                    ca:2e:4a:66:e5:1f:d5:6a:da:f8:f4:31:19:03:27:
+                    a3:95:b8:49:e4:81:7a:d8:29:65:bf:73:54:e6:f6:
+                    25:14:ba:cc:b0:30:a5:c5:b5:a1:63:96:0e:8c:5b:
+                    d9:2a:4c:a3:21:cf:9b:b6:2b:48:3c:3f:65:0a:42:
+                    b6:1e:d0:85:9d:f0:56:b3:52:1f:31:22:cf:b1:c1:
+                    f8:7c:6f:16:dc:77:7d:83:ce:38:58:79:7d:33:05:
+                    17:56:aa:87:56:15:20:8b:0b:e8:9b:55:08:7b:9f:
+                    82:3c:7a:e3:08:a0:a1:11:52:b0:08:75:a9:e1:83:
+                    18:72:dc:83:19:2f:2f:6d:e8:c7:63:9c:fa:9e:98:
+                    bd:fc:1b:a7:10:c7:80:c9:d2:8c:dc:28:05:92:69:
+                    f8:a9:30:a0:9f:40:3e:61:e5:fa:d2:cd:32:60:f9:
+                    5b:0f:c1:6a:70:33:e6:81:a0:3f:26:e9:fa:ca:00:
+                    0d:de:32:b4:07:6b:7b:c4:78:72:af:35:48:d8:92:
+                    69:6d
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            1.3.6.1.4.1.11129.2.4.2: 
+                ...k.i.v.v..?
+...Q.a....4....).hB
+..gLZ:t.......k.....G0E.!..&<.....x._.,.%\......w..t...4i. K~a..G..{.kb-.=..U.J.K..r..%.I3..w.H..k..G4..j...0..R..V.,.....9..s.............H0F.!......BC.....3-Q$G.UY.-R.$n.....q.!......M.a..Z..#&>.nIY....g......*.v.U.....6.J...W<S...8xp%../....................G0E.!..x..f]}5.....9X.....2$...4.3~ nv. W`%.../Z....@.....4..;..lA...FR.
+            1.3.6.1.4.1.311.21.10: 
+                0.0
+..+.......0
+..+.......
+            1.3.6.1.4.1.311.21.7: 
+                0-.%+.....7.........F...........]...i...>..d..&
+            Authority Information Access: 
+                CA Issuers - URI:http://www.microsoft.com/pkiops/certs/Microsoft%20Azure%20RSA%20TLS%20Issuing%20CA%2003%20-%20xsign.crt
+                OCSP - URI:http://oneocsp.microsoft.com/ocsp
+
+            X509v3 Subject Key Identifier: 
+                53:43:0C:52:B4:72:CF:EC:AD:32:4E:BC:83:64:B2:42:E7:BA:C5:77
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Subject Alternative Name: 
+                DNS:microsoft.com, DNS:s.microsoft.com, DNS:ga.microsoft.com, DNS:aep.microsoft.com, DNS:aer.microsoft.com, DNS:grv.microsoft.com, DNS:hup.microsoft.com, DNS:mac.microsoft.com, DNS:mkb.microsoft.com, DNS:pme.microsoft.com, DNS:pmi.microsoft.com, DNS:rss.microsoft.com, DNS:sar.microsoft.com, DNS:tco.microsoft.com, DNS:fuse.microsoft.com, DNS:ieak.microsoft.com, DNS:mac2.microsoft.com, DNS:mcsp.microsoft.com, DNS:open.microsoft.com, DNS:shop.microsoft.com, DNS:spur.microsoft.com, DNS:itpro.microsoft.com, DNS:mango.microsoft.com, DNS:music.microsoft.com, DNS:pymes.microsoft.com, DNS:store.microsoft.com, DNS:aether.microsoft.com, DNS:alerts.microsoft.com, DNS:design.microsoft.com, DNS:garage.microsoft.com, DNS:gigjam.microsoft.com, DNS:msctec.microsoft.com, DNS:online.microsoft.com, DNS:stream.microsoft.com, DNS:afflink.microsoft.com, DNS:connect.microsoft.com, DNS:develop.microsoft.com, DNS:domains.microsoft.com, DNS:example.microsoft.com, DNS:madeira.microsoft.com, DNS:msdnisv.microsoft.com, DNS:mspress.microsoft.com, DNS:sponsor.microsoft.com, DNS:www.aep.microsoft.com, DNS:www.aer.microsoft.com, DNS:wwwbeta.microsoft.com, DNS:business.microsoft.com, DNS:empresas.microsoft.com, DNS:learning.microsoft.com, DNS:msdnwiki.microsoft.com, DNS:openness.microsoft.com, DNS:pinpoint.microsoft.com, DNS:snackbox.microsoft.com, DNS:sponsors.microsoft.com, DNS:stationq.microsoft.com, DNS:aistories.microsoft.com, DNS:community.microsoft.com, DNS:crawlmsdn.microsoft.com, DNS:iotschool.microsoft.com, DNS:messenger.microsoft.com, DNS:minecraft.microsoft.com, DNS:backoffice.microsoft.com, DNS:enterprise.microsoft.com, DNS:iotcentral.microsoft.com, DNS:pinunblock.microsoft.com, DNS:reroute443.microsoft.com, DNS:communities.microsoft.com, DNS:explore-smb.microsoft.com, DNS:expressions.microsoft.com, DNS:ondernemers.microsoft.com, DNS:techacademy.microsoft.com, DNS:terraserver.microsoft.com, DNS:communities2.microsoft.com, DNS:connectevent.microsoft.com, DNS:dataplatform.microsoft.com, DNS:entrepreneur.microsoft.com, DNS:hxd.research.microsoft.com, DNS:mspartnerira.microsoft.com, DNS:mydatahealth.microsoft.com, DNS:oemcommunity.microsoft.com, DNS:real-stories.microsoft.com, DNS:www.formspro.microsoft.com, DNS:futuredecoded.microsoft.com, DNS:upgradecenter.microsoft.com, DNS:learnanalytics.microsoft.com, DNS:onlinelearning.microsoft.com, DNS:businesscentral.microsoft.com, DNS:cloud-immersion.microsoft.com, DNS:studentpartners.microsoft.com, DNS:analyticspartner.microsoft.com, DNS:businessplatform.microsoft.com, DNS:explore-security.microsoft.com, DNS:kleinunternehmen.microsoft.com, DNS:partnercommunity.microsoft.com, DNS:explore-marketing.microsoft.com, DNS:innovationcontest.microsoft.com, DNS:partnerincentives.microsoft.com, DNS:phoenixcataloguat.microsoft.com, DNS:szkolyprzyszlosci.microsoft.com, DNS:www.powerautomate.microsoft.com, DNS:successionplanning.microsoft.com, DNS:lumiaconversationsuk.microsoft.com, DNS:successionplanninguat.microsoft.com, DNS:businessmobilitycenter.microsoft.com, DNS:skypeandteams.fasttrack.microsoft.com, DNS:www.microsoftdlapartnerow.microsoft.com, DNS:commercialappcertification.microsoft.com, DNS:www.skypeandteams.fasttrack.microsoft.com, DNS:ceoconnections.event.microsoft.com, DNS:biz4afrika.microsoft.com, DNS:cashback.microsoft.com, DNS:www.cashback.microsoft.com, DNS:visio.microsoft.com, DNS:insidemsr.microsoft.com, DNS:developervelocityassessment.com, DNS:www.developervelocityassessment.com, DNS:gears5.com, DNS:www.gears5.com, DNS:www.gearstactics.com, DNS:gearstactics.com, DNS:m12.microsoft.com, DNS:seeingai.com, DNS:www.seeingai.com, DNS:msrgamut.microsoft.com, DNS:yourchoice.microsoft.com, DNS:mvtd.events.microsoft.com, DNS:imagine.microsoft.com, DNS:microsoft.com.au, DNS:www.microsoft.com.au
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://www.microsoft.com/pkiops/crl/Microsoft%20Azure%20RSA%20TLS%20Issuing%20CA%2003.crl
+
+            X509v3 Certificate Policies: 
+                Policy: 1.3.6.1.4.1.311.76.509.1.1
+                  CPS: http://www.microsoft.com/pkiops/Docs/Repository.htm
+                Policy: 2.23.140.1.2.2
+
+            X509v3 Authority Key Identifier: 
+                keyid:FE:09:71:40:55:05:10:44:D8:A4:81:75:B8:9E:1A:E9:4A:06:88:C8
+
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication, TLS Web Server Authentication
+    Signature Algorithm: sha384WithRSAEncryption
+         28:7c:a2:7a:85:49:6e:6a:43:72:49:a2:69:80:d8:70:97:66:
+         de:60:56:77:35:42:44:ba:a8:62:e6:00:8e:ee:97:7f:a6:23:
+         3d:bf:c5:46:ae:ac:27:81:75:35:32:99:ee:79:fc:91:f2:49:
+         8e:3e:ab:0e:44:0c:9c:a0:d6:c6:03:3c:ee:f5:30:f8:98:5e:
+         73:81:7a:10:4e:d3:2a:26:72:0b:d2:65:06:30:1c:1c:e8:8c:
+         13:15:34:f2:13:b7:32:b3:09:85:b7:f1:2c:45:f7:9d:fb:2d:
+         5a:f8:25:b4:2c:5c:a8:82:10:d4:eb:7f:6a:c3:c9:4a:39:7f:
+         87:18:4f:ca:a8:cb:74:5a:98:c5:49:0d:cd:97:c7:9a:57:1d:
+         e5:f3:6b:4c:e6:1a:8e:d4:ed:e4:12:7a:36:3d:f6:3d:10:28:
+         bf:22:8a:6f:79:c8:ef:bf:d7:39:38:ea:23:53:8b:89:95:ec:
+         31:3c:cc:d7:d4:86:9a:f1:b2:c1:f0:4f:72:7d:6f:b4:4b:f4:
+         7f:2a:34:a8:07:cc:c4:b1:17:8f:4e:bd:20:08:67:a0:9b:b4:
+         a6:5e:fe:28:ac:25:37:70:61:6b:a6:8f:b1:e2:f1:4c:da:1a:
+         32:bc:84:ca:75:4e:76:14:82:aa:03:cc:fb:8e:c6:28:34:9b:
+         9d:d8:a2:e1:37:bd:46:af:9d:db:5a:9b:93:1c:9a:d7:7f:8f:
+         57:2f:f7:42:f0:b1:7a:42:e4:fc:34:75:f9:7a:8a:0a:09:50:
+         ed:3d:2a:94:56:68:f8:b8:08:70:dc:17:9f:91:b9:df:41:eb:
+         f7:90:13:46:0c:85:84:d3:18:51:10:85:12:e7:de:8a:81:57:
+         73:5a:0c:f2:cf:4f:65:59:6c:97:1e:fa:96:62:0e:48:2b:31:
+         e5:2e:65:c2:21:2f:97:fe:71:ec:75:2b:dc:6f:b5:ea:87:af:
+         d7:6e:be:2a:13:12:f2:20:36:9a:ac:47:66:e9:8a:bf:88:9b:
+         e5:27:a2:97:a5:80:0b:eb:60:2b:29:30:05:c5:bc:de:6a:28:
+         31:01:9d:74:78:59:9f:09:76:a6:4c:9c:cd:1a:26:5b:52:a6:
+         d8:9d:8c:c6:f0:52:7e:6b:f0:97:61:4e:98:09:4f:ca:d2:13:
+         64:63:d3:02:da:bc:b4:5a:a9:82:79:fb:52:d4:ec:a1:3b:b1:
+         05:35:50:5c:7f:26:34:0d:40:97:3d:6c:91:a7:20:97:f8:70:
+         63:78:18:9f:37:dd:c4:c9:9c:74:c0:ac:93:3a:cb:2a:94:63:
+         b7:9c:70:09:cf:40:ce:76:72:79:fc:40:fb:8e:f4:09:9b:e1:
+         b2:5a:b6:8b:1e:f5:f5:9f

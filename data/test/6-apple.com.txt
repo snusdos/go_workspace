@@ -1,0 +1,57 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            41:68:fd:82:58:3c:12:27:69:70:28:70:24:ce:88:64
+    Signature Algorithm: ecdsa-with-SHA256
+        Issuer: C=US, O=Apple Inc., CN=Apple Public EV Server ECC CA 1 - G1
+        Validity
+            Not Before: Feb  1 20:36:02 2024 GMT
+            Not After : May  1 20:46:02 2024 GMT
+        Subject: businessCategory=Private Organization/jurisdictionCountryName=US/jurisdictionStateOrProvinceName=California/serialNumber=C0806592, C=US, ST=California, L=Cupertino, O=Apple Inc., CN=apple.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:d8:40:bd:01:cc:26:2a:d9:9e:e9:fe:e3:d6:8c:
+                    31:82:2e:18:ea:ab:29:cb:0b:1a:34:b5:f2:0c:e4:
+                    1e:c4:f6:da:9b:68:1a:40:9e:4e:37:ea:a6:de:0f:
+                    ef:64:aa:e8:03:39:13:42:c4:cc:86:7d:c2:4a:29:
+                    6a:a9:d7:a2:74
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Authority Key Identifier: 
+                keyid:E0:85:48:7D:13:A6:D3:10:19:9F:5C:CB:6B:78:24:92:F8:AE:1B:AE
+
+            Authority Information Access: 
+                CA Issuers - URI:http://certs.apple.com/apevsecc1g1.der
+                OCSP - URI:http://ocsp.apple.com/ocsp03-apevsecc1g101
+
+            X509v3 Subject Alternative Name: 
+                DNS:apple.com
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.1
+                  CPS: https://www.apple.com/certificateauthority/public
+                Policy: 2.16.840.1.114412.2.1
+
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl.apple.com/apevsecc1g1.crl
+
+            X509v3 Subject Key Identifier: 
+                41:E9:FB:00:5D:C9:DC:7A:D0:AE:CA:9B:EA:41:88:2F:B5:A7:7F:77
+            X509v3 Key Usage: critical
+                Digital Signature
+            1.3.6.1.4.1.11129.2.4.2: 
+                .......v.;Swu>-..N.0[..@;g.O.....-ro........fk.!.....G0E. ]l:...s.x.......mL....MJ....Q...!..5..I..LT.5T......*.3N...........w.H..k..G4..j...0..R..V.,.....9..s....fk.......H0F.!..Q."..E..I......Qr.i......Y...2..!....T....'.._..r........#...kW....v....k?.."....\k.p.ql.Q..4..=0H.......fk.......G0E. )..z.....n+...7"a.\V...f..@.D...!..,. w2.....b...G..ZT.....^|..}.n.v....d.....\......2.F|....QHYFq.......fk.......G0E. j.l.(R..D}..>..zq.J..Mj..K~K..:L.!..y.O..j.;h....`R_..A?=..*....!.}
+    Signature Algorithm: ecdsa-with-SHA256
+         30:45:02:20:2a:00:bc:7d:78:c5:21:a1:fe:1b:ad:4f:71:43:
+         78:96:47:bf:3e:8a:d2:f2:35:94:c5:84:e4:c0:32:29:6e:b8:
+         02:21:00:e8:2e:6c:db:37:b9:84:ee:0d:e1:5a:09:6d:3d:39:
+         eb:90:a1:08:24:a3:cb:01:cb:76:df:68:87:eb:eb:be:ab

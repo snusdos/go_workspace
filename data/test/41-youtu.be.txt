@@ -1,0 +1,67 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            c3:89:d8:5e:94:b2:4b:69:09:ec:2a:a9:6c:65:8a:5a
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+        Validity
+            Not Before: Feb  5 08:03:56 2024 GMT
+            Not After : Apr 29 08:03:55 2024 GMT
+        Subject: CN=*.google.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:99:8a:0b:8c:c4:b3:0d:df:1b:2f:c4:09:6d:9d:
+                    7e:d5:4d:0f:55:fd:69:be:71:11:0b:49:06:b7:f0:
+                    b0:1c:d2:b8:0d:31:47:95:cb:4c:db:f4:31:f5:47:
+                    d0:cd:52:fa:99:4b:d0:32:11:af:ed:5d:76:fd:a0:
+                    9b:50:f1:96:ad
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                0C:CA:BC:B9:CA:5C:78:AD:66:70:29:DD:16:80:9B:A3:78:7E:B2:E4
+            X509v3 Authority Key Identifier: 
+                keyid:8A:74:7F:AF:85:CD:EE:95:CD:3D:9C:D0:E2:46:14:F3:71:35:1D:27
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.pki.goog/gts1c3
+                CA Issuers - URI:http://pki.goog/repo/certs/gts1c3.der
+
+            X509v3 Subject Alternative Name: 
+                DNS:*.google.com, DNS:*.appengine.google.com, DNS:*.bdn.dev, DNS:*.origin-test.bdn.dev, DNS:*.cloud.google.com, DNS:*.crowdsource.google.com, DNS:*.datacompute.google.com, DNS:*.google.ca, DNS:*.google.cl, DNS:*.google.co.in, DNS:*.google.co.jp, DNS:*.google.co.uk, DNS:*.google.com.ar, DNS:*.google.com.au, DNS:*.google.com.br, DNS:*.google.com.co, DNS:*.google.com.mx, DNS:*.google.com.tr, DNS:*.google.com.vn, DNS:*.google.de, DNS:*.google.es, DNS:*.google.fr, DNS:*.google.hu, DNS:*.google.it, DNS:*.google.nl, DNS:*.google.pl, DNS:*.google.pt, DNS:*.googleapis.cn, DNS:*.googlevideo.com, DNS:*.gstatic.cn, DNS:*.gstatic-cn.com, DNS:googlecnapps.cn, DNS:*.googlecnapps.cn, DNS:googleapps-cn.com, DNS:*.googleapps-cn.com, DNS:gkecnapps.cn, DNS:*.gkecnapps.cn, DNS:googledownloads.cn, DNS:*.googledownloads.cn, DNS:recaptcha.net.cn, DNS:*.recaptcha.net.cn, DNS:recaptcha-cn.net, DNS:*.recaptcha-cn.net, DNS:widevine.cn, DNS:*.widevine.cn, DNS:ampproject.org.cn, DNS:*.ampproject.org.cn, DNS:ampproject.net.cn, DNS:*.ampproject.net.cn, DNS:google-analytics-cn.com, DNS:*.google-analytics-cn.com, DNS:googleadservices-cn.com, DNS:*.googleadservices-cn.com, DNS:googlevads-cn.com, DNS:*.googlevads-cn.com, DNS:googleapis-cn.com, DNS:*.googleapis-cn.com, DNS:googleoptimize-cn.com, DNS:*.googleoptimize-cn.com, DNS:doubleclick-cn.net, DNS:*.doubleclick-cn.net, DNS:*.fls.doubleclick-cn.net, DNS:*.g.doubleclick-cn.net, DNS:doubleclick.cn, DNS:*.doubleclick.cn, DNS:*.fls.doubleclick.cn, DNS:*.g.doubleclick.cn, DNS:dartsearch-cn.net, DNS:*.dartsearch-cn.net, DNS:googletraveladservices-cn.com, DNS:*.googletraveladservices-cn.com, DNS:googletagservices-cn.com, DNS:*.googletagservices-cn.com, DNS:googletagmanager-cn.com, DNS:*.googletagmanager-cn.com, DNS:googlesyndication-cn.com, DNS:*.googlesyndication-cn.com, DNS:*.safeframe.googlesyndication-cn.com, DNS:app-measurement-cn.com, DNS:*.app-measurement-cn.com, DNS:gvt1-cn.com, DNS:*.gvt1-cn.com, DNS:gvt2-cn.com, DNS:*.gvt2-cn.com, DNS:2mdn-cn.net, DNS:*.2mdn-cn.net, DNS:googleflights-cn.net, DNS:*.googleflights-cn.net, DNS:admob-cn.com, DNS:*.admob-cn.com, DNS:googlesandbox-cn.com, DNS:*.googlesandbox-cn.com, DNS:*.safenup.googlesandbox-cn.com, DNS:*.gstatic.com, DNS:*.metric.gstatic.com, DNS:*.gvt1.com, DNS:*.gcpcdn.gvt1.com, DNS:*.gvt2.com, DNS:*.gcp.gvt2.com, DNS:*.url.google.com, DNS:*.youtube-nocookie.com, DNS:*.ytimg.com, DNS:android.com, DNS:*.android.com, DNS:*.flash.android.com, DNS:g.cn, DNS:*.g.cn, DNS:g.co, DNS:*.g.co, DNS:goo.gl, DNS:www.goo.gl, DNS:google-analytics.com, DNS:*.google-analytics.com, DNS:google.com, DNS:googlecommerce.com, DNS:*.googlecommerce.com, DNS:ggpht.cn, DNS:*.ggpht.cn, DNS:urchin.com, DNS:*.urchin.com, DNS:youtu.be, DNS:youtube.com, DNS:*.youtube.com, DNS:youtubeeducation.com, DNS:*.youtubeeducation.com, DNS:youtubekids.com, DNS:*.youtubekids.com, DNS:yt.be, DNS:*.yt.be, DNS:android.clients.google.com, DNS:developer.android.google.cn, DNS:developers.android.google.cn, DNS:source.android.google.cn, DNS:developer.chrome.google.cn, DNS:web.developers.google.cn
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.1
+                Policy: 1.3.6.1.4.1.11129.2.5.3
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crls.pki.goog/gts1c3/zdATt0Ex_Fk.crl
+
+            1.3.6.1.4.1.11129.2.4.2: 
+                ......u....d.....\......2.F|....QHYFq.......x........F0D. l+.....a...t..M`...=....V]...... c..Ss.f...d..Z..Nf^..e.U.M.r.....v.H..k..G4..j...0..R..V.,.....9..s....x........G0E.!.."/..t..MW....E.....B)NC.Z...:. md0.5...........^.E..}..s..V0.xc
+    Signature Algorithm: sha256WithRSAEncryption
+         84:66:6c:a5:0b:9d:22:47:2a:49:a6:68:4b:5c:11:8d:14:9b:
+         d1:d7:36:d4:ee:42:3a:d2:5f:ea:25:82:57:e6:cf:e2:3a:46:
+         3f:78:72:3b:26:fc:62:6b:6f:ef:e7:bd:b6:31:54:92:4c:f3:
+         8d:70:84:b8:12:05:8a:99:ca:8e:9e:c1:38:a0:d5:2c:84:17:
+         6f:49:44:12:e7:6d:cc:61:c1:0c:83:1a:38:89:fb:5c:75:db:
+         d8:bb:a5:e3:ba:d4:8b:29:b4:10:24:c7:b2:e4:d9:11:9e:c8:
+         9c:cb:88:f5:39:57:f8:f0:15:8c:3a:d7:ff:c0:fb:9c:ed:4f:
+         11:9b:dd:9b:85:ef:01:38:08:c6:6c:88:59:77:8b:4f:32:f9:
+         3a:ec:36:4c:6a:e8:b9:36:83:f1:06:e1:75:db:9e:db:40:38:
+         38:f7:75:76:84:83:db:91:92:a5:26:88:e7:ee:89:22:bb:f1:
+         09:9c:17:f7:40:dc:e8:6f:91:6f:8d:b1:99:43:fd:37:03:24:
+         26:f5:26:0e:77:36:20:91:92:ec:ba:52:c3:34:2b:ea:65:f2:
+         70:9b:37:7d:e0:ce:e8:8f:4b:9f:f3:59:a5:ce:1f:9a:6a:af:
+         2d:7f:ca:3b:3c:3f:05:22:ee:f8:de:b4:3b:a0:76:d0:a1:5d:
+         6c:7c:c6:22

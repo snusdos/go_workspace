@@ -1,0 +1,84 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            0a:21:d8:b7:8d:5d:97:c8:ef:41:44:f2:d4:76:db:65
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=DigiCert Inc, CN=DigiCert EV RSA CA G2
+        Validity
+            Not Before: Oct  6 00:00:00 2023 GMT
+            Not After : Jul 30 23:59:59 2024 GMT
+        Subject: jurisdictionCountryName=US/jurisdictionStateOrProvinceName=Utah/businessCategory=Private Organization/serialNumber=5299537-0142, C=US, ST=Utah, L=Lehi, O=DigiCert, Inc., CN=www.digicert.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:98:df:33:59:c1:3b:a7:38:8c:5d:9e:2f:e3:cf:
+                    cb:ea:50:3a:36:fe:77:a7:98:52:4d:c2:ca:94:78:
+                    8f:e6:f3:57:5d:38:77:f2:d3:d7:6b:a4:90:42:f7:
+                    71:1e:58:6a:92:0d:95:91:5f:32:71:b1:93:1c:f5:
+                    db:e0:0a:d6:d2:a8:da:6f:1a:80:39:57:4d:e5:af:
+                    97:58:52:d1:ac:42:18:e1:99:2f:5e:b0:bd:1d:3b:
+                    f2:8c:5e:8c:ad:a7:99:f5:a5:51:d1:61:4a:65:a9:
+                    17:23:9e:bb:10:86:b5:36:9e:aa:33:87:8c:00:6f:
+                    28:ec:2a:5c:d9:51:4e:5c:34:08:24:3a:8f:61:85:
+                    a8:b1:8f:6c:9e:72:7e:a1:8b:88:31:81:07:e8:95:
+                    75:2f:28:09:0e:91:b4:f9:2c:1c:7f:c5:34:15:5e:
+                    59:bc:21:1c:4e:a3:ac:7f:b2:4c:76:e4:c4:9c:d9:
+                    c1:ce:56:f3:a6:07:1f:43:f0:9a:c5:dd:09:3f:60:
+                    77:27:d8:0f:55:05:9b:82:f2:f6:20:40:0a:05:04:
+                    61:b9:d7:11:e6:26:89:95:78:d3:20:c5:6f:09:19:
+                    d8:9b:e1:9a:d8:cd:e3:32:69:11:ce:3f:0c:fe:34:
+                    c0:ca:25:49:9d:45:d0:67:7e:d9:78:c9:0e:34:95:
+                    88:39
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Authority Key Identifier: 
+                keyid:6A:4E:50:BF:98:68:9D:5B:7B:20:75:D4:59:01:79:48:66:92:32:06
+
+            X509v3 Subject Key Identifier: 
+                D4:38:B0:9D:E2:63:52:91:C7:82:03:F0:1F:00:CE:EE:A0:FA:B7:93
+            X509v3 Subject Alternative Name: 
+                DNS:www.digicert.com, DNS:digicert.com, DNS:admin.digicert.com, DNS:api.digicert.com, DNS:content.digicert.com, DNS:login.digicert.com, DNS:order.digicert.com, DNS:ws.digicert.com, DNS:cart.digicert.com
+            X509v3 Certificate Policies: 
+                Policy: 2.16.840.1.114412.2.1
+                Policy: 2.23.140.1.1
+                  CPS: http://www.digicert.com/CPS
+
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl3.digicert.com/DigiCertEVRSACAG2.crl
+
+                Full Name:
+                  URI:http://crl4.digicert.com/DigiCertEVRSACAG2.crl
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.digicert.com
+                CA Issuers - URI:http://cacerts.digicert.com/DigiCertEVRSACAG2.crt
+
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            1.3.6.1.4.1.11129.2.4.2: 
+                ...m.k.w....d.....\......2.F|....QHYFq........W6......H0F.!....v...t....u.......
+.oh...._j...!.......@....x".I.Id...k.S.m%`./j.w.H..k..G4..j...0..R..V.,.....9..s.....W6......H0F.!...hB.)..{....A.b.[-.....H.3Z..<E.!.......y...=..k.....R.^|.w..`.uPZ.w.?.KO."GX..e......7...j...(...dn.....W7......H0F.!..............MDO...3....7)RQ...2.!....G{.a..)$...V....m..r......m.<
+    Signature Algorithm: sha256WithRSAEncryption
+         0c:00:75:f2:21:e3:cc:49:17:a9:ec:52:f3:b3:6f:9f:07:5f:
+         ff:07:ef:c7:b5:41:63:69:61:ef:9a:63:05:c9:81:c2:a0:7a:
+         a2:ac:28:1f:c7:e1:ec:70:96:f7:2f:7c:a2:ea:88:d7:79:a2:
+         cc:14:7c:3c:8c:a3:5d:ff:44:29:c7:87:6d:cb:2b:63:29:20:
+         fa:05:bd:3a:0a:3d:a1:77:6a:cf:24:b8:22:5d:89:48:38:34:
+         e7:7b:d0:96:99:21:86:1d:db:49:ab:78:61:df:f9:5b:8d:98:
+         46:9a:11:20:63:46:7a:be:3c:69:51:41:e4:6c:97:ee:22:45:
+         63:33:07:65:5a:b8:67:02:b4:83:43:71:e8:99:8f:84:f5:1d:
+         e4:18:0f:bb:e7:4e:ef:19:6b:c3:6b:bf:b7:6c:22:86:29:4b:
+         94:d1:68:1e:3d:27:ca:b8:fe:00:1f:58:e8:c8:73:2b:93:0b:
+         0b:a9:35:62:5d:28:94:d4:93:82:c1:bb:66:bc:2c:b9:c5:c2:
+         2c:1c:61:86:c2:b8:c4:f2:19:ab:f5:84:9c:af:33:e5:2c:0b:
+         23:ae:4f:e3:0f:f2:a6:6b:f8:5c:25:6d:f0:89:2c:ae:c6:88:
+         51:d0:99:bf:d9:5b:57:56:3b:08:db:46:77:a5:35:28:e9:0f:
+         63:f8:77:55

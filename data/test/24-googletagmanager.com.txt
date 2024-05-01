@@ -1,0 +1,68 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            7d:59:7d:19:a4:71:b9:88:10:9b:75:18:aa:56:48:e5
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+        Validity
+            Not Before: Feb  5 08:03:51 2024 GMT
+            Not After : Apr 29 08:03:50 2024 GMT
+        Subject: CN=*.google-analytics.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:0e:67:4d:fb:e7:00:a1:c0:9e:c2:8b:9d:6e:2b:
+                    4a:52:02:11:1f:be:70:65:38:2d:0e:13:c9:3f:47:
+                    c9:b5:9a:74:e7:23:ab:43:e5:6b:c3:6c:15:1d:95:
+                    0d:21:26:4d:24:bb:0a:cf:8a:6a:cc:61:36:ee:6a:
+                    66:1e:6f:76:bd
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                4A:37:38:AA:16:F5:4C:5B:94:1D:F2:C5:51:CC:1C:7F:E7:51:19:E4
+            X509v3 Authority Key Identifier: 
+                keyid:8A:74:7F:AF:85:CD:EE:95:CD:3D:9C:D0:E2:46:14:F3:71:35:1D:27
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.pki.goog/gts1c3
+                CA Issuers - URI:http://pki.goog/repo/certs/gts1c3.der
+
+            X509v3 Subject Alternative Name: 
+                DNS:*.google-analytics.com, DNS:region1.app-measurement.com, DNS:app-measurement.com, DNS:region1.att.app-measurement.com, DNS:att.app-measurement.com, DNS:region1.analytics.app-measurement.com, DNS:analytics.app-measurement.com, DNS:region1.app-analytics-services-att.com, DNS:app-analytics-services-att.com, DNS:region1.app-analytics-services.com, DNS:app-analytics-services.com, DNS:google-analytics.com, DNS:region1.google-analytics.com, DNS:ssl.google-analytics.com, DNS:www.google-analytics.com, DNS:region1.analytics.google.com, DNS:googletagmanager.com, DNS:www.googletagmanager.com, DNS:urchin.com, DNS:service.urchin.com, DNS:fps.goog, DNS:*.fps.goog, DNS:googleoptimize.com, DNS:www.googleoptimize.com
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.1
+                Policy: 1.3.6.1.4.1.11129.2.5.3
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crls.pki.goog/gts1c3/QqFxbi9M48c.crl
+
+            1.3.6.1.4.1.11129.2.4.2: 
+                ......v....d.....\......2.F|....QHYFq.......x.y......G0E. ).E....w.UQE.I..#zF.#..].8.V.G.<.!...8...Z...q..d....a.z....5.9g!...v.;Swu>-..N.0[..@;g.O.....-ro........x.z
+.....G0E. a.......r....._.......+.7..0tp.k.!..+....MY.S......e...;..I...<It..
+    Signature Algorithm: sha256WithRSAEncryption
+         61:8f:02:43:f9:33:66:7d:38:09:b0:ab:24:c6:ea:49:d9:fb:
+         8f:3a:62:26:f0:b6:d8:8b:14:14:5f:ca:69:9d:56:6a:bb:b0:
+         3e:86:60:75:b9:f6:6f:f6:7a:01:f8:3a:b8:d3:7e:9f:91:31:
+         42:04:75:20:9d:f6:7c:b1:f6:34:f7:95:1f:e3:e6:fa:53:42:
+         68:db:65:c5:00:fe:12:9f:0a:e5:68:d6:4a:2e:86:d3:13:50:
+         f4:0a:41:a9:4c:a5:a6:df:3d:f1:1a:64:67:af:86:20:ee:48:
+         6c:64:be:09:21:84:5d:26:4e:b6:84:da:7f:57:2e:06:46:37:
+         f8:62:91:73:3e:80:05:07:02:3f:b8:d1:bf:74:1f:03:5c:5a:
+         ec:4e:52:96:e6:e8:84:0a:4f:ac:3e:a3:32:4a:7f:93:06:1c:
+         70:36:75:3d:95:95:b1:e1:f6:00:82:2d:6a:75:ad:95:4c:2f:
+         d4:4d:80:51:ba:1c:a1:05:e8:b9:2d:6b:4a:a2:b4:cb:78:a5:
+         58:f4:9f:bb:e8:80:05:de:a8:7a:2e:f6:a8:df:e4:f8:54:a0:
+         00:3a:e4:4c:28:f7:fb:c0:bb:5e:d0:d5:4b:cb:57:7b:04:f6:
+         29:a5:dc:4b:20:50:75:e6:c3:e9:e5:c5:46:9e:14:20:c4:74:
+         de:c6:c6:ab

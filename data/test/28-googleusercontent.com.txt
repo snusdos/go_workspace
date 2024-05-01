@@ -1,0 +1,70 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            4a:97:14:78:d4:19:e7:fe:10:4d:52:73:13:51:56:28
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+        Validity
+            Not Before: Feb  5 08:18:43 2024 GMT
+            Not After : Apr 29 08:18:42 2024 GMT
+        Subject: CN=*.googleusercontent.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:5e:47:74:b9:ab:da:e3:83:7f:a3:b0:99:34:29:
+                    06:c0:a3:38:66:55:57:fe:30:3d:73:f1:cb:35:c5:
+                    59:57:48:3f:a5:5f:60:9f:0c:f8:6f:c5:06:d7:99:
+                    13:4b:e9:b0:f7:00:08:2b:f7:13:04:ee:6c:c7:ba:
+                    52:12:c4:3b:50
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                44:6E:0C:FB:B8:F1:7A:40:6A:D1:74:07:78:B6:B4:EF:BA:93:EC:3B
+            X509v3 Authority Key Identifier: 
+                keyid:8A:74:7F:AF:85:CD:EE:95:CD:3D:9C:D0:E2:46:14:F3:71:35:1D:27
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.pki.goog/gts1c3
+                CA Issuers - URI:http://pki.goog/repo/certs/gts1c3.der
+
+            X509v3 Subject Alternative Name: 
+                DNS:*.googleusercontent.com, DNS:commondatastorage.googleapis.com, DNS:*.commondatastorage.googleapis.com, DNS:storage.googleapis.com, DNS:*.storage.googleapis.com, DNS:storage-p2.googleapis.com, DNS:*.storage-p2.googleapis.com, DNS:storage.mtls.googleapis.com, DNS:*.appspot.com.storage.googleapis.com, DNS:*.content-storage.googleapis.com, DNS:*.content-storage-p2.googleapis.com, DNS:*.content-storage-upload.googleapis.com, DNS:*.content-storage-download.googleapis.com, DNS:*.storage-upload.googleapis.com, DNS:*.storage-download.googleapis.com, DNS:blogspot.com, DNS:*.blogspot.com, DNS:bp.blogspot.com, DNS:*.bp.blogspot.com, DNS:doubleclickusercontent.com, DNS:*.doubleclickusercontent.com, DNS:ggpht.com, DNS:*.ggpht.com, DNS:googledrive.com, DNS:*.googledrive.com, DNS:*.googlesyndication.com, DNS:*.safeframe.googlesyndication.com, DNS:googleusercontent.com, DNS:*.byoid.googleusercontent.com, DNS:usercontent.goog, DNS:*.usercontent.goog, DNS:*.ucp.usercontent.goog, DNS:*.h5games.usercontent.goog, DNS:*.playables.usercontent.goog, DNS:*.allownetworkplayables.usercontent.goog, DNS:*.safeframe.usercontent.goog, DNS:*.sandbox.usercontent.goog, DNS:*.scf.usercontent.goog, DNS:*.isolated.usercontent.goog, DNS:*.static.usercontent.goog, DNS:*.ads-static.usercontent.goog, DNS:manifest.c.mail.googleusercontent.com, DNS:manifest.lh3-da.googleusercontent.com, DNS:manifest.lh3-db.googleusercontent.com, DNS:manifest.lh3-dc.googleusercontent.com, DNS:manifest.lh3-dd.googleusercontent.com, DNS:manifest.lh3-de.googleusercontent.com, DNS:manifest.lh3-df.googleusercontent.com, DNS:manifest.lh3-dg.googleusercontent.com, DNS:manifest.lh3-dz.googleusercontent.com, DNS:manifest.lh3.googleusercontent.com, DNS:manifest.lh3.photos.google.com, DNS:googleweblight.com, DNS:*.googleweblight.com, DNS:translate.goog, DNS:*.translate.goog, DNS:*.search.translate.goog, DNS:*.dev.amp4mail.googleusercontent.com, DNS:*.prod.amp4mail.googleusercontent.com, DNS:*.playground.amp4mail.googleusercontent.com, DNS:*.playground-internal.amp4mail.googleusercontent.com, DNS:*.aiplatform-notebook.googleusercontent.com, DNS:*.aiplatform-training.googleusercontent.com, DNS:*.audiobook-additional-material-staging.googleusercontent.com, DNS:*.audiobook-additional-material.googleusercontent.com, DNS:*.apps.googleusercontent.com, DNS:*.safenup.googleusercontent.com, DNS:*.sandbox.googleusercontent.com, DNS:*.backupdr.googleusercontent.com, DNS:*.backupdr.byoid.googleusercontent.com, DNS:*.backupdr-staging.googleusercontent.com, DNS:*.backupdr-staging.byoid.googleusercontent.com, DNS:*.backupdr-autopush.googleusercontent.com, DNS:*.backupdr-autopush.byoid.googleusercontent.com, DNS:*.backupdr-dev.googleusercontent.com, DNS:*.backupdr-dev.byoid.googleusercontent.com, DNS:*.backupdr-sandbox.googleusercontent.com, DNS:*.backupdr-sandbox.byoid.googleusercontent.com, DNS:*.composer.googleusercontent.com, DNS:*.composer.byoid.googleusercontent.com, DNS:*.composer-staging.googleusercontent.com, DNS:*.composer-staging.byoid.googleusercontent.com, DNS:*.composer-qa.googleusercontent.com, DNS:*.composer-qa.byoid.googleusercontent.com, DNS:*.composer-dev.googleusercontent.com, DNS:*.composer-dev.byoid.googleusercontent.com, DNS:*.dataplex.googleusercontent.com, DNS:*.dataplex-staging.googleusercontent.com, DNS:*.dataplex-dev.googleusercontent.com, DNS:*.dataproc.googleusercontent.com, DNS:*.dataproc.byoid.googleusercontent.com, DNS:*.dataproc-image-staging.googleusercontent.com, DNS:*.dataproc-image-staging.byoid.googleusercontent.com, DNS:*.dataproc-staging.googleusercontent.com, DNS:*.dataproc-staging.byoid.googleusercontent.com, DNS:*.dataproc-test.googleusercontent.com, DNS:*.dataproc-test.byoid.googleusercontent.com, DNS:*.datafusion.googleusercontent.com, DNS:*.datafusion.byoid.googleusercontent.com, DNS:*.datafusion-staging.googleusercontent.com, DNS:*.datafusion-staging.byoid.googleusercontent.com, DNS:*.datafusion-dev.googleusercontent.com, DNS:*.datafusion-dev.byoid.googleusercontent.com, DNS:*.datafusion-api.googleusercontent.com, DNS:*.datafusion-api.byoid.googleusercontent.com, DNS:*.datafusion-api-staging.googleusercontent.com, DNS:*.datafusion-api-staging.byoid.googleusercontent.com, DNS:*.datafusion-api-dev.googleusercontent.com, DNS:*.datafusion-api-dev.byoid.googleusercontent.com, DNS:*.gsc.googleusercontent.com, DNS:*.gcc.googleusercontent.com, DNS:*.tuf.googleusercontent.com, DNS:*.tuf-autopush.googleusercontent.com, DNS:*.tuf-dev.googleusercontent.com, DNS:*.tuf-staging.googleusercontent.com, DNS:*.fuchsia-updates.googleusercontent.com, DNS:*.fuchsia-updates-autopush.googleusercontent.com, DNS:*.fuchsia-updates-autopush-qual.googleusercontent.com, DNS:*.fuchsia-updates-dev.googleusercontent.com, DNS:*.fuchsia-updates-staging.googleusercontent.com, DNS:*.notebooks.googleusercontent.com, DNS:*.notebooks.byoid.googleusercontent.com, DNS:*.pipelines.googleusercontent.com, DNS:*.tensorboard.googleusercontent.com, DNS:*.tensorboard-autopush.googleusercontent.com, DNS:*.tensorboard-dev.googleusercontent.com, DNS:*.tensorboard-staging.googleusercontent.com, DNS:*.tensorboard-test.googleusercontent.com, DNS:*.kernels.googleusercontent.com, DNS:*.kernels-staging.googleusercontent.com, DNS:*.kernels-test.googleusercontent.com, DNS:*.cloudshell.googleusercontent.com, DNS:*.cloudworkstations.googleusercontent.com
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.1
+                Policy: 1.3.6.1.4.1.11129.2.5.3
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crls.pki.goog/gts1c3/zdATt0Ex_Fk.crl
+
+            1.3.6.1.4.1.11129.2.4.2: 
+                ......u....k?.."....\k.p.ql.Q..4..=0H.......x........F0D. ..R....4.t....
+...9.......K..k... TQ%....Te\...".0q.}..M-Wp.k..R...w.v..?
+...Q.a....4....).hB
+..gLZ:t....x........H0F.!...j..<..k...o:M.#A...Ch..`.`.8.i.!....O*...*I......v..`..F<i......n
+    Signature Algorithm: sha256WithRSAEncryption
+         08:97:3b:63:3a:e3:51:e2:9d:6d:43:08:1c:d2:82:1e:e5:2e:
+         42:5d:20:d4:83:2f:be:b3:03:66:cd:b1:1a:23:1e:cb:36:7b:
+         58:ce:bc:18:8f:e5:50:97:9f:02:80:c8:0c:5d:7c:64:57:18:
+         6e:3c:0e:f8:a9:55:a1:c7:4a:cb:d5:b0:a4:a8:5d:2e:5e:87:
+         ab:76:d9:b7:69:a5:85:95:ab:3f:f3:92:b9:27:a1:e2:2a:9e:
+         72:2b:dc:5f:d6:ed:94:35:67:34:14:da:44:ab:6a:83:ef:ff:
+         7f:ab:ca:51:1d:36:2e:51:e6:dd:33:eb:ca:cf:85:ed:c1:e8:
+         fd:ef:93:ee:4a:90:b6:16:f6:c4:98:db:a4:43:8c:59:00:83:
+         27:a4:9e:2f:77:70:32:d3:14:4d:8f:17:e2:65:26:48:c6:58:
+         99:b9:43:6c:31:56:03:a1:65:60:40:4a:9d:b5:e0:85:df:1f:
+         d1:4e:8a:c5:c4:73:61:6a:b0:47:e9:1e:5e:4e:97:54:f6:03:
+         97:20:01:26:44:c2:53:e0:3c:87:81:e9:2a:2c:ce:61:0a:c5:
+         24:4f:f2:e8:69:e0:d5:a3:6f:ce:10:a5:58:b3:16:fb:17:ae:
+         f3:f8:1b:6d:25:c6:36:74:0c:21:be:b4:13:b7:c9:a8:e3:4a:
+         3f:db:5a:87

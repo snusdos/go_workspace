@@ -1,0 +1,70 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            08:a3:5c:dd:0a:10:59:d4:5f:f0:1c:65:4e:0d:08:7b
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert SHA2 High Assurance Server CA
+        Validity
+            Not Before: Feb 20 00:00:00 2024 GMT
+            Not After : Aug 14 23:59:59 2024 GMT
+        Subject: C=US, ST=California, L=Sunnyvale, O=Oath Holdings Inc., CN=yahoo.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:24:b1:e4:a8:a6:50:6a:7c:c2:e3:90:e4:f9:b9:
+                    cf:30:07:6c:7c:46:90:c0:6a:e3:dd:92:5f:bb:a9:
+                    a3:bc:12:09:99:38:a4:42:c5:e2:c7:06:58:95:13:
+                    43:aa:84:69:38:b6:d0:6a:8e:97:d9:9d:f9:02:45:
+                    49:46:ab:f0:52
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Authority Key Identifier: 
+                keyid:51:68:FF:90:AF:02:07:75:3C:CC:D9:65:64:62:A2:12:B8:59:72:3B
+
+            X509v3 Subject Key Identifier: 
+                CC:CA:D8:95:9F:F9:A2:43:3E:77:DE:0F:DC:05:6E:5A:84:8F:EC:DB
+            X509v3 Subject Alternative Name: 
+                DNS:yahoo.com, DNS:tw.rd.yahoo.com, DNS:s.yimg.com, DNS:mbp.yimg.com, DNS:hk.rd.yahoo.com, DNS:fr-ca.rogers.yahoo.com, DNS:ddl.fp.yahoo.com, DNS:ca.rogers.yahoo.com, DNS:ca.my.yahoo.com, DNS:brb.yahoo.net, DNS:add.my.yahoo.com, DNS:*.yahoo.com, DNS:*.www.yahoo.com, DNS:*.media.yahoo.com, DNS:*.global.vespa.oath.cloud, DNS:*.att.yahoo.com, DNS:*.amp.yimg.com
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.2
+                  CPS: http://www.digicert.com/CPS
+
+            X509v3 Key Usage: critical
+                Digital Signature, Key Agreement
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl3.digicert.com/sha2-ha-server-g6.crl
+
+                Full Name:
+                  URI:http://crl4.digicert.com/sha2-ha-server-g6.crl
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.digicert.com
+                CA Issuers - URI:http://cacerts.digicert.com/DigiCertSHA2HighAssuranceServerCA.crt
+
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            1.3.6.1.4.1.11129.2.4.2: 
+                ...i.g.v....d.....\......2.F|....QHYFq.........e#.....G0E.!..,i..(X}l.0R.=.vl.........~)'q /. .G.m.Z..9G.M4.7.....N:.`..h.5...u.H..k..G4..j...0..R..V.,.....9..s......eV.....F0D. H@.`.2..?.....Qhnr&&.......o..0e. e.oZFh...8R..xd.V..~v7.;..#...n..v....k?.."....\k.p.ql.Q..4..=0H.........eP.....G0E.!...X7.a..&.jY...*Z1.w..7........t. O...:....n.TS..F...4.......KB[gf
+    Signature Algorithm: sha256WithRSAEncryption
+         ad:7d:b5:71:0c:8d:01:3e:ae:bf:f2:89:d0:22:4f:7d:fb:94:
+         bc:eb:62:0e:c3:08:1c:fe:87:e3:b4:cb:84:55:b6:0b:97:04:
+         23:41:62:c9:8d:01:68:db:85:71:89:a8:10:4f:48:2a:e9:1c:
+         1f:41:d7:a5:fe:cf:8c:ce:88:81:db:a8:18:1e:00:7a:dd:89:
+         6c:21:4c:03:38:7c:5d:30:b9:c7:9e:18:aa:bb:83:5f:ec:ec:
+         4d:83:07:93:bd:f0:34:5a:68:67:85:7a:61:cf:a8:af:ed:02:
+         76:ce:7c:d4:3b:58:f5:67:2b:0a:e4:49:b6:fb:00:36:22:9f:
+         28:a0:ff:b5:7c:6c:90:aa:32:5d:27:63:b8:b5:e6:61:33:ca:
+         64:88:b8:de:37:59:7a:7b:4c:2f:47:65:dc:57:c5:b9:f1:67:
+         7e:04:b9:c6:79:ef:65:39:9c:dc:40:41:ad:c3:63:9e:3d:26:
+         c2:94:05:bc:e5:95:d0:14:ec:3c:93:0d:75:90:00:92:f4:88:
+         b8:43:82:fe:ac:13:f6:9c:9e:7b:68:ac:ff:6b:41:3b:36:ba:
+         d9:b5:52:bd:52:38:31:af:4f:90:1e:41:17:34:32:bd:7f:57:
+         a4:98:97:d1:ac:2a:e6:20:c5:c0:14:df:b6:be:14:e6:7b:34:
+         6f:77:42:af
