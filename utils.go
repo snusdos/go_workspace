@@ -36,13 +36,13 @@ func connect(_ context.Context, logURI string) *client.LogClient {
 			ResponseHeaderTimeout: 30 * time.Second,
 			MaxIdleConnsPerHost:   10,
 			DisableKeepAlives:     false,
-			MaxIdleConns:          100, //try with more
+			MaxIdleConns:          500, //try with more
 			IdleConnTimeout:       90 * time.Second,
 			ExpectContinueTimeout: 1 * time.Second,
 			TLSClientConfig:       tlsCfg,
 		},
 	}
-	opts := jsonclient.Options{UserAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15"} //try without 3min fast for 400k cert xenon2018 log.
+	opts := jsonclient.Options{UserAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:125.0) Gecko/20100101 Firefox/125.0"} //try without.
 	if pubKey != "" {
 		pubkey, err := os.ReadFile(pubKey)
 		if err != nil {

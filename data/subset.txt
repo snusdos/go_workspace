@@ -45,4 +45,8 @@ https://ct.trustasia.com/log2022/
 https://ct.trustasia.com/log2023/
 https://ct2024.trustasia.com/log2024/
 https://ct2025-a.trustasia.com/log2025a/
+<<<<<<< HEAD
 https://ct2025-b.trustasia.com/log2025b/
+=======
+https://ct2025-b.trustasia.com/log2025b/
+>>>>>>> 74096e5fbf6ed3ed40f5d076ae26757839b2c2db
