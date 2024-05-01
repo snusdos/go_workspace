@@ -37,6 +37,7 @@ var (
 
 /*
 TODO:
+0. MAKE DYNINT INCREASE/HAVE IT STATIC HIGH
 1. Go rutines inom varje log på olika index
 2. fixa folders för entries för att hantera massa filer KANSKE? https://forums.codeguru.com/showthread.php?390838-How-many-files-can-a-folder-contain
 3. ordna certs i folders efter year ev...
