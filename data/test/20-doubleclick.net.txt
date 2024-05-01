@@ -1,0 +1,69 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            1f:76:b2:80:41:57:e2:5d:09:9a:63:fa:c9:8b:52:c9
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+        Validity
+            Not Before: Feb  5 08:03:10 2024 GMT
+            Not After : Apr 29 08:03:09 2024 GMT
+        Subject: CN=*.doubleclick.net
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:6e:9d:21:6a:80:a3:e5:93:d5:a6:dc:35:91:6f:
+                    6a:48:7b:7a:55:27:5a:8b:a8:b6:77:3a:4b:4e:7e:
+                    ba:1b:5e:89:d8:fa:5a:90:f0:dc:f7:66:3c:c1:03:
+                    d1:d3:29:15:61:03:87:32:7e:99:cf:bf:2c:1b:da:
+                    99:f2:70:fd:29
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                A2:6A:E6:66:0A:84:C2:93:9C:12:5C:DA:20:F8:24:64:78:E8:DD:21
+            X509v3 Authority Key Identifier: 
+                keyid:8A:74:7F:AF:85:CD:EE:95:CD:3D:9C:D0:E2:46:14:F3:71:35:1D:27
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.pki.goog/gts1c3
+                CA Issuers - URI:http://pki.goog/repo/certs/gts1c3.der
+
+            X509v3 Subject Alternative Name: 
+                DNS:*.doubleclick.net, DNS:*.2mdn.net, DNS:*.au.doubleclick.net, DNS:*.cc-dt.com, DNS:*.de.doubleclick.net, DNS:doubleclick.com, DNS:*.doubleclick.com, DNS:*.fls.doubleclick.net, DNS:*.fr.doubleclick.net, DNS:*.jp.doubleclick.net, DNS:*.uk.doubleclick.net, DNS:ad.mo.doubleclick.net, DNS:doubleclick.net
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.1
+                Policy: 1.3.6.1.4.1.11129.2.5.3
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crls.pki.goog/gts1c3/QOvJ0N1sT2A.crl
+
+            1.3.6.1.4.1.11129.2.4.2: 
+                ......v.H..k..G4..j...0..R..V.,.....9..s....x........G0E.!..h..`3......iV(....Sy.)...cHqh.b. A...p.F...G..`......8.K..;{.J....u.v..?
+...Q.a....4....).hB
+..gLZ:t....x........F0D. Z...3.+^......M.H<V.;./yuA...$.J. e...%.v$...u]...)D...B...._.Q.*.
+    Signature Algorithm: sha256WithRSAEncryption
+         d3:87:16:6a:c9:68:79:d7:46:34:20:16:70:f1:4c:29:ba:74:
+         e7:d2:81:3e:22:16:68:1a:ca:55:ce:dd:5e:f0:7a:35:ca:f4:
+         be:e2:82:e1:5e:67:3e:fc:20:8e:ee:73:35:eb:e0:be:a5:86:
+         8f:8b:a9:e0:40:2d:75:57:c4:bc:65:a5:1a:04:c6:98:78:6d:
+         7b:40:c1:21:33:75:05:42:a1:c1:dc:80:94:ca:01:07:87:86:
+         e3:10:83:e9:25:89:28:34:01:c1:d4:7b:2e:8d:d0:03:f3:57:
+         73:f2:ec:30:9d:70:23:7d:8f:a5:1c:40:a4:1c:38:56:69:9d:
+         88:a5:b8:dd:4f:0e:53:6d:af:b9:c2:b0:22:14:06:04:48:8b:
+         23:56:cd:41:44:f9:b1:a9:2a:d2:f4:50:a9:99:81:6e:d1:97:
+         2d:53:e2:0d:eb:07:16:74:16:3e:a8:27:04:60:12:3d:37:b8:
+         ca:83:d9:20:b2:8c:ae:5d:2e:79:fe:e0:38:42:0d:f6:22:d2:
+         90:47:fd:fd:2b:8a:73:a7:01:56:0a:18:3b:a6:c8:dd:17:17:
+         fe:65:91:4e:43:a6:b6:0a:6f:c2:14:e4:30:c9:b4:6c:70:60:
+         fc:4c:0b:1f:b5:b7:fa:f3:d3:fa:36:f6:fa:89:8d:dd:c7:bb:
+         e7:c0:66:00

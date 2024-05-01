@@ -1,0 +1,61 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            0b:e2:a2:0b:61:33:3d:04:58:e2:04:4d:79:a9:18:5f
+    Signature Algorithm: ecdsa-with-SHA256
+        Issuer: C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert Secure Site ECC CA-1
+        Validity
+            Not Before: Oct 25 00:00:00 2023 GMT
+            Not After : Oct 24 21:48:09 2024 GMT
+        Subject: C=US, ST=California, L=Los Gatos, O=Netflix, Inc., CN=www.netflix.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:a6:fa:25:ce:d9:4c:3e:c0:5d:a0:f1:60:ce:1f:
+                    bb:cb:3c:2f:f3:ad:7d:5d:fc:e3:ed:0c:61:c4:2b:
+                    7c:89:6b:3a:87:c9:e6:ef:9f:6d:45:cc:53:31:40:
+                    b3:23:41:f3:02:b3:78:14:2f:1d:eb:1b:8d:6e:55:
+                    47:8b:d6:f4:93
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Authority Key Identifier: 
+                keyid:DB:35:44:5D:2B:EB:53:AF:9E:0B:F5:71:3D:A3:99:73:AE:FB:5C:53
+
+            X509v3 Subject Key Identifier: 
+                93:6B:8D:EA:3B:DD:2B:66:24:1A:4F:C8:FF:8C:A6:03:AB:E4:79:48
+            X509v3 Subject Alternative Name: 
+                DNS:account.netflix.com, DNS:ca.netflix.com, DNS:netflix.ca, DNS:netflix.com, DNS:signup.netflix.com, DNS:www.netflix.ca, DNS:www1.netflix.com, DNS:www2.netflix.com, DNS:www3.netflix.com, DNS:develop-stage.netflix.com, DNS:release-stage.netflix.com, DNS:www.netflix.com, DNS:tv.netflix.com, DNS:embed.develop-stage.netflix.com, DNS:embed.release-stage.netflix.com
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.2
+                  CPS: http://www.digicert.com/CPS
+
+            X509v3 Key Usage: critical
+                Digital Signature, Key Agreement
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl3.digicert.com/DigiCertSecureSiteECCCA-1.crl
+
+                Full Name:
+                  URI:http://crl4.digicert.com/DigiCertSecureSiteECCCA-1.crl
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.digicert.com
+                CA Issuers - URI:http://cacerts.digicert.com/DigiCertSecureSiteECCCA-1.crt
+
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            1.3.6.1.4.1.11129.2.4.2: 
+                ...k.i.w.v..?
+...Q.a....4....).hB
+..gLZ:t....h.4......H0F.!.........|...j........G.\k.3t'....!..9. ...{.>...o^......ol..s...:...w.H..k..G4..j...0..R..V.,.....9..s....h.4b.....H0F.!..M.?%..;..8....`...._..F.yV......!../...S..7.X..6.:.....IWD.*...U|.u....k?.."....\k.p.ql.Q..4..=0H.......h.4G.....F0D. ...)....2S.../....k:............. M.J..L.....n7.....sfp..f_#.^@...
+    Signature Algorithm: ecdsa-with-SHA256
+         30:45:02:21:00:cf:34:b2:30:c8:b6:1b:52:70:86:bf:06:9b:
+         7d:dc:ef:32:bf:14:63:8c:eb:6b:1e:07:9a:54:b1:af:a2:a7:
+         d3:02:20:75:89:50:87:c2:59:ce:0b:86:10:02:01:ab:10:d6:
+         b3:2c:c8:08:de:a5:e1:c2:51:c2:7f:e0:28:c2:0c:7e:7b

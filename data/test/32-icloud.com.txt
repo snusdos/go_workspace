@@ -1,0 +1,57 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            50:17:2c:71:1d:97:d8:34:49:20:f4:68:bb:c0:8a:c8
+    Signature Algorithm: ecdsa-with-SHA256
+        Issuer: CN=Apple Public Server ECC CA 12 - G1, O=Apple Inc., ST=California, C=US
+        Validity
+            Not Before: Jan  3 15:08:40 2024 GMT
+            Not After : Apr  2 15:18:40 2024 GMT
+        Subject: C=US, ST=California, O=Apple Inc., CN=icloud.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:b4:9b:0e:21:61:5c:bb:d1:db:bc:a3:62:e1:b5:
+                    a2:e6:1f:2f:8d:14:bf:5c:0e:06:4a:bb:07:39:da:
+                    75:24:28:56:ff:58:db:b3:b5:e5:30:4b:f3:5b:6f:
+                    a8:cf:89:5d:70:9b:ce:08:b6:a6:49:39:90:2d:a9:
+                    d6:e4:db:b7:7b
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Authority Key Identifier: 
+                keyid:5F:E3:2E:8A:94:97:DE:D3:5C:E1:B7:D4:BC:98:8E:31:29:C9:90:3A
+
+            Authority Information Access: 
+                CA Issuers - URI:http://certs.apple.com/apsecc12g1.der
+                OCSP - URI:http://ocsp.apple.com/ocsp03-apsecc12g101
+
+            X509v3 Subject Alternative Name: 
+                DNS:icloud.com
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.2
+                  CPS: https://www.apple.com/certificateauthority/public
+                Policy: 1.2.840.113635.100.5.11.4
+
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl.apple.com/apsecc12g1.crl
+
+            X509v3 Subject Key Identifier: 
+                CA:F1:60:9D:20:55:06:DA:42:74:4A:86:2D:D5:F8:DE:2F:5F:66:AE
+            X509v3 Key Usage: critical
+                Digital Signature
+            1.3.6.1.4.1.11129.2.4.2: 
+                .......u.;Swu>-..N.0[..@;g.O.....-ro...........7.....F0D. ...<.....z.&...U?t......Pk.j..-.. .<.'.e.7 .;..f...'fS.UB:....y....v.H..k..G4..j...0..R..V.,.....9..s.......%.....G0E.!..k.o....8...:v3...hm.U..Z .(I]... #.[d....dJ}b.P.....r.T!..2Z$m.Y..w....k?.."....\k.p.ql.Q..4..=0H..........<.....H0F.!...HT%Tpw..0.....WpmE..F.......XF.!..{c.|.o...........v...P.o....12..v....d.....\......2.F|....QHYFq..........*.....G0E. R.-.......p.7.~..y..a.a...j......!...F.U.#.=.f.*4...yJP=.c"....^.Y.
+    Signature Algorithm: ecdsa-with-SHA256
+         30:46:02:21:00:b1:11:9d:32:84:17:32:ac:fe:33:81:ed:96:
+         15:57:1b:a5:5a:82:80:98:4c:83:8b:eb:67:6a:e5:47:58:45:
+         57:02:21:00:f7:4a:53:0c:4d:f4:59:7e:fe:9d:80:69:1f:bb:
+         ea:bb:86:74:fd:b4:e4:74:cc:55:06:b2:b4:2b:44:49:bb:2a

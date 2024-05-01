@@ -1,0 +1,84 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            08:56:49:31:e1:b1:6a:27:24:aa:bc:c5:fc:88:8d:0f
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=DigiCert Inc, CN=DigiCert Global G2 TLS RSA SHA256 2020 CA1
+        Validity
+            Not Before: Jul 31 00:00:00 2023 GMT
+            Not After : Aug  7 23:59:59 2024 GMT
+        Subject: C=US, ST=California, L=San Francisco, O=Pinterest, Inc., CN=*.pinterest.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:b5:13:38:ce:d4:76:dc:49:4d:c0:0f:e5:ab:6e:
+                    39:ed:36:75:0d:98:3f:1c:68:4c:6b:0e:8c:c4:04:
+                    9a:f3:cc:3c:47:d3:92:88:be:f3:14:6f:ea:9b:6d:
+                    46:44:5e:c7:4b:ad:2c:8f:18:0d:56:57:a3:f0:d8:
+                    e8:43:97:5b:12:4d:e3:94:34:16:17:1a:8e:f2:cb:
+                    eb:fb:00:e9:82:26:8e:12:f7:ab:a7:5f:67:37:ff:
+                    87:b0:15:b5:af:1c:81:7e:ce:ef:81:cc:da:03:ac:
+                    0a:85:44:bd:6e:d7:88:fc:ff:fa:68:df:b7:aa:ce:
+                    02:46:f1:cc:0b:f7:7f:21:e1:70:c7:a1:df:5b:67:
+                    20:4d:66:2a:c1:c7:c5:49:b2:f5:a2:59:43:01:0b:
+                    3a:1b:ad:52:b7:89:8e:d3:85:16:44:71:87:9d:bf:
+                    7f:93:8d:ad:c9:12:a3:fc:57:7b:c4:f4:89:00:a9:
+                    f4:ae:69:c0:e1:5b:01:e5:93:34:01:d6:7a:7e:9f:
+                    39:81:d2:36:2c:51:35:77:b0:a5:22:8a:07:23:89:
+                    73:2c:d9:c7:33:57:3d:89:66:a2:6a:51:4d:a1:84:
+                    a2:b5:ba:c0:18:11:4e:46:8f:46:05:4d:46:02:ed:
+                    dd:f2:7c:e6:52:8f:88:80:40:b6:80:89:83:89:43:
+                    12:95
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Authority Key Identifier: 
+                keyid:74:85:80:C0:66:C7:DF:37:DE:CF:BD:29:37:AA:03:1D:BE:ED:CD:17
+
+            X509v3 Subject Key Identifier: 
+                2A:32:7F:76:80:47:7D:F1:DC:44:8A:82:1F:6C:92:4E:BA:B7:A3:40
+            X509v3 Subject Alternative Name: 
+                DNS:*.pinterest.com, DNS:*.pinimg.com, DNS:*.pinterest.info, DNS:*.pinterest.engineering, DNS:*.pinterestmail.com, DNS:*.pinterest.at, DNS:*.pinterest.ch, DNS:*.pinterest.de, DNS:*.pinterest.dk, DNS:*.pinterest.ie, DNS:*.pinterest.jp, DNS:*.pinterest.kr, DNS:*.pinterest.mx, DNS:*.pinterest.pt, DNS:*.pinterest.se, DNS:*.pinterest.co.at, DNS:*.pinterest.co.kr, DNS:*.pinterest.co.uk, DNS:*.pinterest.com.mx, DNS:pin.it, DNS:pinterest.com, DNS:pinimg.com, DNS:pinterest.info, DNS:pinterest.engineering, DNS:pinterestmail.com, DNS:pinterest.at, DNS:pinterest.ch, DNS:pinterest.de, DNS:pinterest.dk, DNS:pinterest.ie, DNS:pinterest.jp, DNS:pinterest.kr, DNS:pinterest.mx, DNS:pinterest.pt, DNS:pinterest.se, DNS:pinterest.co.at, DNS:pinterest.co.kr, DNS:pinterest.co.uk, DNS:pinterest.com.mx, DNS:*.pinterest.ca, DNS:*.pinterest.fr, DNS:pinterest.ca, DNS:pinterest.fr, DNS:pinterest.com.au, DNS:*.pinterest.com.au, DNS:pinterest.nz, DNS:*.pinterest.nz, DNS:pinterest.es, DNS:*.pinterest.es, DNS:pinterest.cl, DNS:*.pinterest.cl, DNS:pinterest.ph, DNS:*.pinterest.ph, DNS:pinterest.in, DNS:*.pinterest.in, DNS:pinterest.co.in, DNS:*.pinterest.co.in, DNS:pinterest.be, DNS:*.pinterest.be, DNS:pinterest.pe, DNS:*.pinterest.pe, DNS:pinterest.co, DNS:*.pinterest.co, DNS:pinterest.com.py, DNS:*.pinterest.com.py, DNS:pinterest.com.bo, DNS:*.pinterest.com.bo, DNS:pinterest.com.ec, DNS:*.pinterest.com.ec, DNS:pinterest.ec, DNS:*.pinterest.ec, DNS:pinterest.hu, DNS:*.pinterest.hu, DNS:pinterest.com.vn, DNS:*.pinterest.com.vn, DNS:pinterest.it, DNS:*.pinterest.it, DNS:pinterest.com.pe, DNS:*.pinterest.com.pe, DNS:pinterest.com.uy, DNS:*.pinterest.com.uy, DNS:pinterest.co.nz, DNS:*.pinterest.co.nz, DNS:pinterest.uk, DNS:*.pinterest.uk, DNS:pinterest.vn, DNS:*.pinterest.vn, DNS:pinterest.id, DNS:*.pinterest.id, DNS:pinterest.th, DNS:*.pinterest.th, DNS:pinterest.tw, DNS:*.pinterest.tw, DNS:pinterest.nl, DNS:*.pinterest.nl, DNS:*.testing.pinterest.com
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl3.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crl
+
+                Full Name:
+                  URI:http://crl4.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crl
+
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.2
+                  CPS: http://www.digicert.com/CPS
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.digicert.com
+                CA Issuers - URI:http://cacerts.digicert.com/DigiCertGlobalG2TLSRSASHA2562020CA1-1.crt
+
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            1.3.6.1.4.1.11129.2.4.2: 
+                ...l.j.w.v..?
+...Q.a....4....).hB
+..gLZ:t.............H0F.!..D.A.f....#.J9....mK...^...#..y..!..U..1.%......rw....!V.u._!.T..0;.v.H..k..G4..j...0..R..V.,.....9..s.............G0E.!...3.RFk>;......Ir.(U&..n.O...4... E...x.4..M|E.{K.)|...k"..ojz9...w....k?.."....\k.p.ql.Q..4..=0H................H0F.!..&..../1...!.w.B....;....r..7o...!...R..l...H.R(2....&'.W.7....Vv..
+    Signature Algorithm: sha256WithRSAEncryption
+         19:49:c6:0c:99:a4:70:0a:c0:f2:c1:56:ad:47:05:3a:b9:76:
+         4b:c7:6c:e7:7d:7b:5d:a6:22:fd:75:65:81:ec:8f:15:9f:53:
+         8a:16:72:34:ee:6b:b7:75:c4:91:d3:3b:37:da:4f:d9:33:ea:
+         95:58:8e:ac:ed:b4:15:35:6a:09:72:e0:50:e4:a0:b9:a9:9c:
+         ae:58:a3:c5:ba:cc:41:a8:e9:af:f5:19:c2:99:ae:f1:9a:96:
+         95:7f:27:ff:07:ba:ca:3e:65:c0:29:fd:7b:3f:7e:56:19:25:
+         5a:1e:82:5e:2e:be:e7:e1:70:f2:22:57:37:a1:02:9f:35:38:
+         72:02:30:56:a3:6a:66:5d:76:81:96:3b:46:a1:e7:1a:3e:f0:
+         d4:09:d0:55:47:bf:26:22:ee:5b:e3:74:79:0d:33:16:e5:79:
+         71:21:d1:9e:68:d5:34:6c:ee:40:d9:8d:f9:b1:a4:4f:de:c6:
+         81:54:05:c5:55:5d:06:bc:f4:64:17:cd:8e:b1:fe:34:6e:ec:
+         18:32:8c:b9:5c:f2:2d:5d:66:6f:87:b5:e9:d6:24:56:25:aa:
+         eb:ba:81:0a:1b:6d:7c:11:9f:09:7c:a2:5a:be:86:a6:9c:52:
+         81:c5:85:20:54:d6:17:25:b2:27:b6:15:7a:43:70:23:96:cd:
+         f2:08:64:5c

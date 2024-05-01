@@ -1,0 +1,67 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            d6:72:ed:6f:86:6f:fb:0e:0a:be:32:74:87:dc:40:67
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=Google Trust Services LLC, CN=GTS CA 1C3
+        Validity
+            Not Before: Feb  5 08:19:14 2024 GMT
+            Not After : Apr 29 08:19:13 2024 GMT
+        Subject: CN=*.gstatic.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:39:b8:15:6e:b1:70:96:32:9f:cf:3b:31:1f:57:
+                    b8:b4:74:06:57:a3:f7:d9:84:06:93:ec:8e:59:7d:
+                    97:e6:2d:48:46:51:4e:c3:35:d1:d6:0a:fc:f3:83:
+                    30:27:9c:f7:8c:02:07:25:59:b6:0d:f7:31:4b:5d:
+                    25:47:98:e8:bd
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                D2:45:2A:46:16:5E:4A:C4:2E:2F:47:C5:2A:60:AF:E4:2F:6C:06:C8
+            X509v3 Authority Key Identifier: 
+                keyid:8A:74:7F:AF:85:CD:EE:95:CD:3D:9C:D0:E2:46:14:F3:71:35:1D:27
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.pki.goog/gts1c3
+                CA Issuers - URI:http://pki.goog/repo/certs/gts1c3.der
+
+            X509v3 Subject Alternative Name: 
+                DNS:*.gstatic.com, DNS:gstatic.com, DNS:*.metric.gstatic.com
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.1
+                Policy: 1.3.6.1.4.1.11129.2.5.3
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crls.pki.goog/gts1c3/moVDfISia2k.crl
+
+            1.3.6.1.4.1.11129.2.4.2: 
+                ......v.H..k..G4..j...0..R..V.,.....9..s....x..q.....G0E. .V.......G,.%...[F.P@^s...\..C...!..X...s.. ....H..u.6...i%h..s..s..v....d.....\......2.F|....QHYFq.......x..O.....G0E. ...d..FJ..V..V=..5..(~C.......R..!..A..2..........).....vGV..l...~.
+    Signature Algorithm: sha256WithRSAEncryption
+         93:6a:96:6a:df:db:50:df:a1:a0:0d:19:b5:9c:58:c0:0f:e6:
+         22:e6:7a:e9:2b:2e:98:58:a4:94:a9:00:06:f8:7b:59:66:67:
+         88:3f:39:c1:1d:f9:04:87:84:e6:bb:c8:bb:b8:05:a1:07:c8:
+         66:60:65:0a:4c:ea:ef:c0:2f:84:7d:8e:20:c7:ed:cb:95:04:
+         51:bc:1a:c5:d0:46:0b:5d:71:f4:7a:19:1b:8e:08:b3:4b:43:
+         ee:89:30:3b:8f:3b:bd:c5:f4:17:26:09:66:4f:9b:dd:40:4d:
+         aa:18:65:12:c3:42:7e:26:0f:52:fd:a0:7a:64:4b:63:f4:eb:
+         16:83:64:f7:1a:43:f1:8b:26:83:d1:02:82:21:98:30:b0:0c:
+         c6:c9:93:c3:76:c0:c8:52:56:b0:e5:f0:38:3f:6b:04:7c:60:
+         5d:96:35:cd:4a:69:c7:23:9e:20:8c:8f:33:3b:82:17:a6:7e:
+         cb:54:62:6d:63:a7:c1:8a:d6:ac:92:e2:18:3d:12:f1:20:8a:
+         dc:f3:9d:5e:59:df:3d:88:87:54:88:92:af:02:89:3b:77:13:
+         2e:e3:30:66:15:81:c5:09:d0:5a:ab:e6:44:67:35:79:a5:73:
+         14:20:7e:6b:a7:2a:fc:4f:c2:69:7e:e8:36:b4:ce:ba:ea:90:
+         81:cf:8c:e0

@@ -1,0 +1,62 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            07:41:9e:39:58:3a:4c:76:cf:1e:a1:43:47:fa:5f:3a
+    Signature Algorithm: ecdsa-with-SHA384
+        Issuer: C=US, O=DigiCert Inc, CN=DigiCert TLS Hybrid ECC SHA384 2020 CA1
+        Validity
+            Not Before: Oct 18 00:00:00 2023 GMT
+            Not After : Oct 16 23:59:59 2024 GMT
+        Subject: C=US, ST=California, L=San Francisco, O=Wikimedia Foundation, Inc., CN=*.wikipedia.org
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:35:61:f4:21:1a:ff:6a:c4:3b:fa:06:47:c6:19:
+                    6e:be:70:38:f1:dc:16:b1:bc:38:14:12:d4:14:2b:
+                    1c:0b:31:81:59:f5:67:f6:e7:2a:d1:3c:1e:fa:ae:
+                    a7:ed:06:5d:d6:6f:5d:89:4c:6b:c8:b0:e0:0f:83:
+                    cf:f5:d3:8a:da
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Authority Key Identifier: 
+                keyid:0A:BC:08:29:17:8C:A5:39:6D:7A:0E:CE:33:C7:2E:B3:ED:FB:C3:7A
+
+            X509v3 Subject Key Identifier: 
+                CA:AC:0C:67:A2:E3:86:43:3F:BB:43:E7:41:D9:A1:87:3A:78:DD:33
+            X509v3 Subject Alternative Name: 
+                DNS:*.wikipedia.org, DNS:wikimedia.org, DNS:mediawiki.org, DNS:wikibooks.org, DNS:wikidata.org, DNS:wikinews.org, DNS:wikiquote.org, DNS:wikisource.org, DNS:wikiversity.org, DNS:wikivoyage.org, DNS:wiktionary.org, DNS:wikimediafoundation.org, DNS:w.wiki, DNS:wmfusercontent.org, DNS:*.m.wikipedia.org, DNS:*.wikimedia.org, DNS:*.m.wikimedia.org, DNS:*.planet.wikimedia.org, DNS:*.mediawiki.org, DNS:*.m.mediawiki.org, DNS:*.wikibooks.org, DNS:*.m.wikibooks.org, DNS:*.wikidata.org, DNS:*.m.wikidata.org, DNS:*.wikinews.org, DNS:*.m.wikinews.org, DNS:*.wikiquote.org, DNS:*.m.wikiquote.org, DNS:*.wikisource.org, DNS:*.m.wikisource.org, DNS:*.wikiversity.org, DNS:*.m.wikiversity.org, DNS:*.wikivoyage.org, DNS:*.m.wikivoyage.org, DNS:*.wiktionary.org, DNS:*.m.wiktionary.org, DNS:*.wikimediafoundation.org, DNS:*.wmfusercontent.org, DNS:wikipedia.org, DNS:wikifunctions.org, DNS:*.wikifunctions.org
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.2
+                  CPS: http://www.digicert.com/CPS
+
+            X509v3 Key Usage: critical
+                Digital Signature, Key Agreement
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl3.digicert.com/DigiCertTLSHybridECCSHA3842020CA1-1.crl
+
+                Full Name:
+                  URI:http://crl4.digicert.com/DigiCertTLSHybridECCSHA3842020CA1-1.crl
+
+            Authority Information Access: 
+                OCSP - URI:http://ocsp.digicert.com
+                CA Issuers - URI:http://cacerts.digicert.com/DigiCertTLSHybridECCSHA3842020CA1-1.crt
+
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            1.3.6.1.4.1.11129.2.4.2: 
+                ...l.j.w....d.....\......2.F|....QHYFq.......CRzr.....H0F.!....z...c.%.aOp]....b%.s...:....e.!......{8....R....:..{....PB?.X..!.v.H..k..G4..j...0..R..V.,.....9..s....CRz......G0E. `.n..."...7..<j+g.e.`..1I.....I..!...+..o.@.I.$..+Q....b!.<..~...A..w....k?.."....\k.p.ql.Q..4..=0H.......CRz......H0F.!.....<3.~.L.W..
+?+qa.:............!..Y.........3...r..y.....+m......
+    Signature Algorithm: ecdsa-with-SHA384
+         30:65:02:30:2a:e3:8e:2e:39:b0:1a:0b:63:1b:a4:80:48:5e:
+         16:d9:ef:0a:b5:06:40:35:1b:18:5c:c5:c9:0c:6c:01:0a:2f:
+         5f:33:b4:32:4b:d7:6f:94:52:f0:ad:c0:e0:d6:0c:65:02:31:
+         00:e5:7c:09:8a:46:e9:93:fa:b2:41:ea:f3:79:4b:29:b9:92:
+         a1:aa:1d:4a:3e:e8:f6:b8:17:69:f2:f8:9c:b8:1c:6e:4c:95:
+         1d:d5:6f:9d:dc:b9:a2:90:e5:20:1b:38:a5

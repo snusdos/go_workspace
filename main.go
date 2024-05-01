@@ -37,6 +37,7 @@ var (
 
 /*
 TODO:
+0. MAKE DYNINT INCREASE/HAVE IT STATIC HIGH
 1. Go rutines inom varje log på olika index
 2. fixa folders för entries för att hantera massa filer KANSKE? https://forums.codeguru.com/showthread.php?390838-How-many-files-can-a-folder-contain
 3. ordna certs i folders efter year ev...
@@ -66,6 +67,7 @@ func main() {
 	preOut = false          //include pres or not
 	getFirst = 0            // First index	unsused
 	getLast = 256           // Last index unsused
+	maxEntries = 2110000000 //set max amount of entries for each log
 	maxEntries = 2100000000 //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
