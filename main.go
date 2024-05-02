@@ -68,6 +68,7 @@ func main() {
 	getFirst = 0            // First index	unsused
 	getLast = 256           // Last index unsused
 	maxEntries = 2110000000 //set max amount of entries for each log
+	maxEntries = 2100000000 //set max amount of entries for each log
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -201,7 +202,7 @@ func showRawCert(cert ct.ASN1Cert) {
 
 func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 chain file, if not no chain files
 
-	fileName := fmt.Sprintf("/Users/simonstensson/Projects/go_workspace/data/certs/%x.pem", cert.SerialNumber)
+	fileName := fmt.Sprintf("E:/certslolv2/%x.pem", cert.SerialNumber)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
@@ -224,7 +225,7 @@ func showParsedCert(cert *x509.Certificate) { //change so that if chainOut 1 cha
 }
 
 func showPEMData(data []byte) {
-	fileName := fmt.Sprintf("/Users/simonstensson/Projects/go_workspace/data/certs/%d.pem", incInt)
+	fileName := fmt.Sprintf("E:/certslolv2/%d.pem", incInt)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
