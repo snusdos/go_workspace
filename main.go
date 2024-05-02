@@ -110,12 +110,11 @@ func runGetEntries(ctx context.Context, logURI string) {
 	treeSize := sth.TreeSize
 
 	index := int64(0)
-	dynInt := int64(1000) //start val for dynInt
 	for index < maxEntries {
 		getFirst := index
-		getLast := index + dynInt - 1
+		getLast := getFirst + 999 //always get max/999 new entires
 
-		if getLast >= maxEntries { //trash needs remake but not important
+		if getLast >= maxEntries { //so we dont exceed max entires..
 			getLast = maxEntries - 1
 		}
 
@@ -124,12 +123,10 @@ func runGetEntries(ctx context.Context, logURI string) {
 			fmt.Println("ERROR FROM: ", logURI)
 			fmt.Println(err)
 			exitWithDetails(err)
-			index += dynInt
 			return //RETURN to kill routine
 		}
 
 		entriesReturned := int64(len(rsp.Entries))
-		//bar.Add(int(entriesReturned)) //update progbar
 		if entriesReturned == 0 { // No more entries to process
 			break
 		}
@@ -147,11 +144,7 @@ func runGetEntries(ctx context.Context, logURI string) {
 		//k := int64(calcK(int64(treeSize)))
 		index += int64(calcK(int64(treeSize))) //int64))
 		//fmt.Printf("K : %v\n", int64(calcK(int64(treeSize))))
-		bar.Set64(index)              //update progbar
-		if entriesReturned < dynInt { //check for
-			dynInt = entriesReturned
-		}
-
+		bar.Set64(index) //update progbar
 	}
 	bar.Finish()
 }
