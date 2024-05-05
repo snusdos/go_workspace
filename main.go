@@ -14,6 +14,7 @@ import (
 	ct "github.com/google/certificate-transparency-go"
 	"github.com/google/certificate-transparency-go/x509"
 	"github.com/google/certificate-transparency-go/x509util"
+	"github.com/google/uuid"
 	"github.com/schollz/progressbar/v3"
 	"k8s.io/klog"
 )
@@ -25,22 +26,19 @@ var (
 	pubKey          string
 	//getFirst        int64
 	//getLast         int64
-	chainOut    bool
-	textOut     bool
-	preOut      bool
-	sOutputFile *os.File
-	outputFile  *os.File
-	maxEntries  int64
-	lock        sync.Mutex
+	chainOut   bool
+	textOut    bool
+	preOut     bool
+	outputFile *os.File
+	//maxEntries int64
+	lock sync.Mutex
 )
 
 /*
 TODO:
-0. random sampling rather than systematic
 0.1 control max number of outputs.
 1. Go rutines inom varje log på olika index
 2. fixa folders för entries för att hantera massa filer KANSKE? https://forums.codeguru.com/showthread.php?390838-How-many-files-can-a-folder-contain
-3. ordna certs i folders efter year ev...
 */
 func main() {
 
@@ -67,7 +65,7 @@ func main() {
 	preOut = false         //include pres or not
 	//getFirst = 0            // First index	unsused
 	//getLast = 256           // Last index unsused
-	maxEntries = 10000 //set max amount of entries to get in total
+	//maxEntries = 10000 //set max amount of entries to get in total
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -75,8 +73,8 @@ func main() {
 		fmt.Printf("Running Log: %s\n", logURI)
 		wg.Add(1)             // Increment the WaitGroup counter
 		go func(uri string) { // GO routine feeding rGE with logURI to allow concurr
-			defer wg.Done()                     // Decrement the counter when the goroutine completes
-			runGetEntries(ctx, uri, maxEntries) // Pass logURI to the goroutine
+			defer wg.Done()         // Decrement the counter when the goroutine completes
+			runGetEntries(ctx, uri) // Pass logURI to the goroutine
 		}(logURI)
 	}
 
@@ -90,7 +88,7 @@ func main() {
 /*
 TODO: fix so it ends after max entires is ok
 */
-func runGetEntries(ctx context.Context, logURI string, maxEntries int64) {
+func runGetEntries(ctx context.Context, logURI string) {
 
 	var logReturnedEntries int64
 
@@ -102,7 +100,7 @@ func runGetEntries(ctx context.Context, logURI string, maxEntries int64) {
 	}
 	fmt.Printf("STH: %v\n", sth.TreeSize)
 	treeSize := sth.TreeSize
-	entriesPerLog := math.Floor(0.0001 * float64(treeSize))
+	entriesPerLog := math.Floor(0.000001 * float64(treeSize))
 
 	bar := progressbar.NewOptions64(
 		int64(entriesPerLog),
@@ -121,14 +119,14 @@ func runGetEntries(ctx context.Context, logURI string, maxEntries int64) {
 		getLast := getFirst + 999             //always get max/999 new entires
 		rsp, err := logClient.GetRawEntries(ctx, getFirst, getLast)
 		if err != nil {
-			fmt.Println("ERROR FROM: ", logURI)
-			fmt.Println(err)
+			fmt.Fprintf(outputFile, "GetRawEntries Error: %s From: %s \n", err, logURI)
 			exitWithDetails(err)
 			return //RETURN to kill routine
 		}
 
 		entriesReturned := int64(len(rsp.Entries))
 		if entriesReturned == 0 { // No more entries to process prob trash now
+			fmt.Fprintf(outputFile, "entriesReturned == 0 for logURI: %s \n", logURI)
 			break
 		}
 
@@ -139,7 +137,7 @@ func runGetEntries(ctx context.Context, logURI string, maxEntries int64) {
 				fmt.Fprintf(outputFile, "Index=%d Failed to unmarshal leaf entry: %v\n", rleindex, err)
 				continue
 			}
-			showRawLogEntry(rle, logURI)
+			showRawLogEntry(rle)
 		}
 		logReturnedEntries += entriesReturned
 		//index += entriesReturned //update index based off actual entries returned
@@ -148,33 +146,34 @@ func runGetEntries(ctx context.Context, logURI string, maxEntries int64) {
 		//fmt.Printf("K : %v\n", int64(calcK(int64(treeSize))))
 		bar.Set64(logReturnedEntries) //update progbar
 	}
+	fmt.Fprintf(outputFile, "loop finished for logURI: %s\n", logURI)
 	bar.Finish()
 }
 
-func showRawLogEntry(rle *ct.RawLogEntry, logURI string) {
+func showRawLogEntry(rle *ct.RawLogEntry) {
 	ts := rle.Leaf.TimestampedEntry          //timestamp
 	when := ct.TimestampToTime(ts.Timestamp) //translation of ts
-	msts := ts.Timestamp                     //millisecond timestamp
-	mstsTime := millisToTime(int64(msts))    //just the ms timestamp
-	year, week := mstsTime.ISOWeek()         //ISOWeek setup
+	//msts := ts.Timestamp                     //millisecond timestamp
+	//mstsTime := millisToTime(int64(msts))    //just the ms timestamp
+	//year, week := mstsTime.ISOWeek()         //ISOWeek setup
 	//if week == 6 || week == 32 {             //only catch certs stamped within week 6 and 32.
 
-	tsfilename := when.Format("20060102") // Format timestamp as YYYYMMDD
+	tsfilename := when.Format("20060102150405") // Format timestamp as YYYYMMDD
 
 	switch ts.EntryType {
 	case ct.X509LogEntryType:
-		lock.Lock()
-		fmt.Fprintf(outputFile, "Index=%d, year=%d, week=%d Timestamp=%d (%v) LOG=%s \n", rle.Index, year, week, ts.Timestamp, when, logURI)
-		lock.Unlock()
+		//lock.Lock()
+		//fmt.Fprintf(outputFile, "Index=%d, year=%d, week=%d Timestamp=%d (%v) LOG=%s \n", rle.Index, year, week, ts.Timestamp, when, logURI)
+		//lock.Unlock()
 		//fmt.Fprintf(outputFile, "X.509 certificate:\n")
 		//fmt.Fprintf(outputFile, "Index=%d Timestamp=%d (%v) ", rle.Index, ts.Timestamp, when)
 		showRawCert(*ts.X509Entry, tsfilename)
 
 	case ct.PrecertLogEntryType:
 		if preOut {
-			lock.Lock()
-			fmt.Fprintf(outputFile, "Index=%d year=%d  Timestamp=%d (%v) LOG=%s \n", rle.Index, year, ts.Timestamp, when, logURI)
-			lock.Unlock()
+			//lock.Lock()
+			//fmt.Fprintf(outputFile, "Index=%d year=%d  Timestamp=%d (%v) LOG=%s \n", rle.Index, year, ts.Timestamp, when, logURI)
+			//lock.Unlock()
 			showRawCert(rle.Cert, tsfilename)
 		}
 	default:
@@ -207,7 +206,7 @@ func showRawCert(cert ct.ASN1Cert, timestamp string) {
 
 func showParsedCert(cert *x509.Certificate, timestamp string) { //change so that if chainOut 1 chain file, if not no chain files
 
-	fileName := fmt.Sprintf("/Volumes/A1/certificates/%x.pem", cert.SerialNumber)
+	fileName := fmt.Sprintf("/Volumes/A1/certificates/%s-%x.pem", timestamp, cert.SerialNumber)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
@@ -230,7 +229,8 @@ func showParsedCert(cert *x509.Certificate, timestamp string) { //change so that
 }
 
 func showPEMData(data []byte, timestamp string) {
-	fileName := fmt.Sprintf("/Volumes/A1/certificates/%s.pem", timestamp)
+	id := uuid.New()
+	fileName := fmt.Sprintf("/Volumes/A1/certificates/%s_%s.pem", timestamp, id)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
@@ -243,10 +243,6 @@ func showPEMData(data []byte, timestamp string) {
 	lock.Unlock()
 }
 
-func millisToTime(ms int64) time.Time {
-	return time.Unix(ms/1000, (ms%1000)*1000000)
-}
-
 func calcRand(n int64) int64 {
 	rnum := rand.Int63n(n)
 	if rnum >= n-1000 { //if number generated is in top end routine might end
@@ -255,6 +251,7 @@ func calcRand(n int64) int64 {
 	return rnum
 }
 
+/*
 func calcK(n int64) float64 { //func to create a k val logaritmicly increasing
 	var multiplier float64 = 3000
 	var c float64 = -23000
@@ -266,3 +263,8 @@ func calcK(n int64) float64 { //func to create a k val logaritmicly increasing
 		return k
 	}
 }
+
+func millisToTime(ms int64) time.Time {
+	return time.Unix(ms/1000, (ms%1000)*1000000)
+}
+*/
