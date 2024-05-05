@@ -53,7 +53,7 @@ func main() {
 	defer outputFile.Close()
 
 	// Read logURIs from a file
-	file, err := os.Open("data/smalllog.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
+	file, err := os.Open("data/argonset.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
 	if err != nil {
 		klog.Exitf("Failed to read log URI file: %v", err)
 	}
@@ -100,7 +100,7 @@ func runGetEntries(ctx context.Context, logURI string) {
 	}
 	fmt.Printf("STH: %v\n", sth.TreeSize)
 	treeSize := sth.TreeSize
-	entriesPerLog := math.Floor(0.000001 * float64(treeSize))
+	entriesPerLog := math.Floor(0.01 * float64(treeSize)) //SET % TO QUERY FROM LOG 1% should be around 50m Leafs
 
 	bar := progressbar.NewOptions64(
 		int64(entriesPerLog),
@@ -146,7 +146,7 @@ func runGetEntries(ctx context.Context, logURI string) {
 		//fmt.Printf("K : %v\n", int64(calcK(int64(treeSize))))
 		bar.Set64(logReturnedEntries) //update progbar
 	}
-	fmt.Fprintf(outputFile, "loop finished for logURI: %s\n", logURI)
+	fmt.Fprintf(outputFile, "logURI: %s Finished at: %s Total Entries: %v \n", logURI, time.Now(), logReturnedEntries)
 	bar.Finish()
 }
 
@@ -186,8 +186,6 @@ func showRawLogEntry(rle *ct.RawLogEntry) {
 	}
 }
 
-//}
-
 func showRawCert(cert ct.ASN1Cert, timestamp string) {
 
 	if textOut {
@@ -206,7 +204,8 @@ func showRawCert(cert ct.ASN1Cert, timestamp string) {
 
 func showParsedCert(cert *x509.Certificate, timestamp string) { //change so that if chainOut 1 chain file, if not no chain files
 
-	fileName := fmt.Sprintf("/Volumes/A1/certificates/%s-%x.pem", timestamp, cert.SerialNumber)
+	serialNumber := fmt.Sprintf("%x", cert.SerialNumber) // Convert serial number to hex string
+	fileName := fmt.Sprintf("/Volumes/A1/certificates/%s-%x.pem", timestamp, serialNumber)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
@@ -221,11 +220,9 @@ func showParsedCert(cert *x509.Certificate, timestamp string) { //change so that
 			fmt.Printf("Failed to write to file: %v\n", err)
 			return
 		}
-		//fmt.Printf("formatted= %x \n", cert.SerialNumber)
-		//fmt.Fprintf(outputFile, "%s\n", x509util.CertificateToString(cert))
-	} else {
-		showPEMData(cert.Raw, timestamp)
+		return
 	}
+	showPEMData(cert.Raw, timestamp)
 }
 
 func showPEMData(data []byte, timestamp string) {
