@@ -98,10 +98,12 @@ func runGetEntries(ctx context.Context, logURI string) {
 	if err != nil {
 		fmt.Println("STH ERROR FROM: ", logURI)
 	}
-	fmt.Printf("STH: %v\n", sth.TreeSize)
+	//fmt.Printf("STH: %v\n", sth.TreeSize)
 	treeSize := sth.TreeSize
 	entriesPerLog := math.Floor(0.01 * float64(treeSize)) //SET % TO QUERY FROM LOG 1% should be around 50m Leafs
-
+	if entriesPerLog < 5000000 {
+		entriesPerLog = 5000000
+	}
 	bar := progressbar.NewOptions64(
 		int64(entriesPerLog),
 		progressbar.OptionSetDescription("Processing log: "+logURI),
