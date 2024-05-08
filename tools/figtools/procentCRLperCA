@@ -1,0 +1,27 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('/Volumes/A1/filteredresultsparsepy.csv')
+#serialnumber,subjectC,subjectCN,subjectL,subjectO,subjectOU,issuerC,issuerCN,issuerL,issuerO,issuerOU,notBefore,notAfter,CRL,OCSP
+#find crl fields
+df_with_crl = df[df['CRL'].notna()]
+
+total_issuerOrgs = df.groupby('issuerO')['serialnumber'].nunique()
+
+filled_issuerOrgs = df_with_crl.groupby('issuerO')['serialnumber'].nunique()
+
+percentage_filled = (filled_issuerOrgs / total_issuerOrgs * 100).dropna()
+
+significant_issuers = percentage_filled[total_issuerOrgs > 10000] 
+
+print(significant_issuers)
+#plot 
+plt.figure(figsize=(10, 6))
+significant_issuers.plot(kind='bar')
+plt.title('Percentage of CRLs among top Issuers')
+plt.xlabel('Issuer Organizations')
+plt.ylabel('Percentage of CRLs in Certificates')
+plt.xticks(rotation=45) 
+plt.grid(True)
+plt.tight_layout()  
+plt.show()
