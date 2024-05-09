@@ -1,27 +1,35 @@
-import os
 import csv
-import time
+import os
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from OpenSSL import crypto
-from multiprocessing import Pool
 
-#may be use https://cryptography.io/en/latest/x509/reference/#cryptography.x509.Certificate instead
+# Constants
+FOLDER_PATH = "C:/Users/simon/go_workspace/data/testpem"
+OUTPUT_FILE = "C:/Users/simon/go_workspace/result.csv"
+NUM_WORKERS = 10  # Number of threads, adjust based on the system capabilities
+
+# CSV headers
+CSV_HEADERS = ['serialnumber', 'subjectC', 'subjectCN', 'subjectL', 'subjectO', 'subjectOU',
+               'issuerC', 'issuerCN', 'issuerL', 'issuerO', 'issuerOU', 'notBefore', 'notAfter', 'CRL', 'OCSP']
+
+# Lock for thread-safe file writing
+file_lock = threading.Lock()
 
 def get_extension_value(cert, ext_name):
     extension_count = cert.get_extension_count()
     for i in range(extension_count):
         ext = cert.get_extension(i)
         if ext.get_short_name().decode() == ext_name:
-            cleaned_value = str(ext).replace('\n', ' ').replace('\r', ' ').strip() #lots of newlines
+            cleaned_value = str(ext).replace('\n', ' ').replace('\r', ' ').strip()
             cleaned_value = ' '.join(cleaned_value.split())
             return cleaned_value
     return ""
 
-# Load a certificate from a file and extract information
 def process_certificate(cert_file):
     try:
         with open(cert_file, "rb") as file:
             cert_data = file.read()
-        # Ensure the PEM start line is present
         if b"-----BEGIN CERTIFICATE-----" not in cert_data:
             print(f"Skipping invalid certificate file: {cert_file}")
             return None
@@ -33,8 +41,7 @@ def process_certificate(cert_file):
     subject = cert.get_subject()
     issuer = cert.get_issuer()
 
-    row = {
-        #'serialnumber': cert.get_serial_number(),
+    cert_info = {
         'serialnumber': format(cert.get_serial_number(), 'x').upper(),
         'subjectC': getattr(subject, 'C', ""),
         'subjectCN': getattr(subject, 'CN', ""),
@@ -51,34 +58,26 @@ def process_certificate(cert_file):
         'CRL': get_extension_value(cert, 'crlDistributionPoints'),
         'OCSP': get_extension_value(cert, 'authorityInfoAccess'),
     }
-    return row
+    return cert_info
+
+def write_to_csv(cert_data):
+    if cert_data is not None:
+        with file_lock:
+            with open(OUTPUT_FILE, 'a', newline='', encoding='utf-8') as file:
+                writer = csv.DictWriter(file, fieldnames=CSV_HEADERS)
+                writer.writerow(cert_data)
 
 def main():
-    folder_path = "/Volumes/A1/certificates" 
-    #folder_path = "/Users/simonstensson/Projects/go_workspace/data/testpem"
-    output_file = "/Volumes/A1/resultsparsepy.csv"
-    
-    with open(output_file, 'w', newline='') as csvfile:
-        fieldnames = ['serialnumber', 'subjectC', 'subjectCN', 'subjectL', 'subjectO', 'subjectOU', 'issuerC', 'issuerCN', 'issuerL', 'issuerO', 'issuerOU', 'notBefore', 'notAfter', 'CRL', 'OCSP']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    # Prepare the output CSV file
+    with open(OUTPUT_FILE, 'w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=CSV_HEADERS)
         writer.writeheader()
 
-        cert_files = [os.path.join(folder_path, filename) for filename in os.listdir(folder_path) if filename.endswith(".pem")]
-        
-        with Pool() as pool:
-            results = [result for result in pool.map(process_certificate, cert_files) if result is not None]
-        
-        for row in results:
-            writer.writerow(row)
+    # Setup ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=NUM_WORKERS) as executor:
+        for filename in os.listdir(FOLDER_PATH):
+            full_path = os.path.join(FOLDER_PATH, filename)
+            if os.path.isfile(full_path):
+                executor.submit(write_to_csv, process_certificate(full_path))
 
-if __name__ == "__main__":
-    start_time = time.time()
-
-    main()
-
-    end_time = time.time()
-    execution_time = end_time - start_time
-    minutes = int(execution_time // 60)
-    seconds = int(execution_time % 60)
-    print("Execution Time:", minutes, "minutes and", seconds, "seconds")
-
+main()
