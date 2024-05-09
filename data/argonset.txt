@@ -1,0 +1,10 @@
+https://ct.googleapis.com/logs/argon2017/
+https://ct.googleapis.com/logs/argon2018/
+https://ct.googleapis.com/logs/argon2019/
+https://ct.googleapis.com/logs/argon2020/
+https://ct.googleapis.com/logs/argon2021/
+https://ct.googleapis.com/logs/argon2022/
+https://ct.googleapis.com/logs/argon2023/
+https://ct.googleapis.com/logs/us1/argon2024/
+https://ct.googleapis.com/logs/us1/argon2025h1/
+https://ct.googleapis.com/logs/us1/argon2025h2/

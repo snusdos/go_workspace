@@ -1,5 +1,10 @@
 data/certs/
 data/text/
 data/output.txt
+data/testpem/
+tools/figtools
+tools/c_scripts/
 notes.txt
 result.csv
+result.csv
+certificates_info.csv
