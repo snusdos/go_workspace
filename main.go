@@ -37,6 +37,8 @@ var (
 
 /*
 TODO:
+https://github.com/google/certificate-transparency-go/blob/master/scanner/scanner.go probably should have used this.. :D
+
 0. MAKE DYNINT INCREASE/HAVE IT STATIC HIGH
 1. Go rutines inom varje log på olika index
 2. fixa folders för entries för att hantera massa filer KANSKE? https://forums.codeguru.com/showthread.php?390838-How-many-files-can-a-folder-contain
