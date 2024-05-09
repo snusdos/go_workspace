@@ -10,7 +10,11 @@ require (
 
 require (
 	github.com/go-logr/logr v1.4.1 // indirect
+<<<<<<< HEAD
 	github.com/google/uuid v1.6.0 // indirect
+=======
+	github.com/google/uuid v1.6.0
+>>>>>>> fad629380f32b011cf1a28a67565b5adb69222f7
 	github.com/mitchellh/colorstring v0.0.0-20190213212951-d06e56a500db // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/schollz/progressbar/v3 v3.14.2 // indirect

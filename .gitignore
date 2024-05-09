@@ -3,9 +3,16 @@ data/text/
 data/test/
 data/output.txt
 data/testpem/
+<<<<<<< HEAD
+=======
+tools/figtools
+>>>>>>> fad629380f32b011cf1a28a67565b5adb69222f7
 tools/c_scripts/
 notes.txt
 result.csv
 result.csv
 certificates_info.csv
+<<<<<<< HEAD
 resultsparsepy.csv
+=======
+>>>>>>> fad629380f32b011cf1a28a67565b5adb69222f7
