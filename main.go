@@ -224,11 +224,7 @@ func showRawCert(cert ct.ASN1Cert, timestamp string) {
 func showParsedCert(cert *x509.Certificate, timestamp string) { //change so that if chainOut 1 chain file, if not no chain files
 
 	serialNumber := fmt.Sprintf("%x", cert.SerialNumber) // Convert serial number to hex string
-<<<<<<< HEAD
 	fileName := fmt.Sprintf("/Volumes/A1/certificatesxenon/%s-%x.pem", timestamp, serialNumber)
-=======
-	fileName := fmt.Sprintf("/Volumes/A1/certificates/%s-%x.pem", timestamp, serialNumber)
->>>>>>> fad629380f32b011cf1a28a67565b5adb69222f7
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
@@ -250,11 +246,7 @@ func showParsedCert(cert *x509.Certificate, timestamp string) { //change so that
 
 func showPEMData(data []byte, timestamp string) {
 	id := uuid.New()
-<<<<<<< HEAD
 	fileName := fmt.Sprintf("/Volumes/A1/certificatesxenon/%s_%s.pem", timestamp, id)
-=======
-	fileName := fmt.Sprintf("/Volumes/A1/certificates/%s_%s.pem", timestamp, id)
->>>>>>> fad629380f32b011cf1a28a67565b5adb69222f7
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
