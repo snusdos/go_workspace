@@ -36,9 +36,11 @@ var (
 
 /*
 TODO:
+0. testa om xenon e snabbare.
 0.1 control max number of outputs.
-1. Go rutines inom varje log på olika index
+1. Go rutines inom varje log på olika index ej rek. verkar d som.
 2. fixa folders för entries för att hantera massa filer KANSKE? https://forums.codeguru.com/showthread.php?390838-How-many-files-can-a-folder-contain
+3.
 */
 func main() {
 
@@ -53,7 +55,7 @@ func main() {
 	defer outputFile.Close()
 
 	// Read logURIs from a file
-	file, err := os.Open("data/argonset.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
+	file, err := os.Open("data/xenonsubset.txt") //subset/input/whatever prob subset tho since so fucking much copies else.xd
 	if err != nil {
 		klog.Exitf("Failed to read log URI file: %v", err)
 	}
@@ -101,8 +103,8 @@ func runGetEntries(ctx context.Context, logURI string) {
 	//fmt.Printf("STH: %v\n", sth.TreeSize)
 	treeSize := sth.TreeSize
 	entriesPerLog := math.Floor(0.01 * float64(treeSize)) //SET % TO QUERY FROM LOG 1% should be around 50m Leafs
-	if entriesPerLog < 5000000 {
-		entriesPerLog = 5000000
+	if entriesPerLog < 5000000 {                          //5 mil as lower limit
+		entriesPerLog = 5000000 //make sure to not exceed TreeSize...
 	}
 	bar := progressbar.NewOptions64(
 		int64(entriesPerLog),
@@ -207,7 +209,7 @@ func showRawCert(cert ct.ASN1Cert, timestamp string) {
 func showParsedCert(cert *x509.Certificate, timestamp string) { //change so that if chainOut 1 chain file, if not no chain files
 
 	serialNumber := fmt.Sprintf("%x", cert.SerialNumber) // Convert serial number to hex string
-	fileName := fmt.Sprintf("/Volumes/A1/certificates/%s-%x.pem", timestamp, serialNumber)
+	fileName := fmt.Sprintf("/Volumes/A1/certificatesxenon/%s-%x.pem", timestamp, serialNumber)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)
@@ -229,7 +231,7 @@ func showParsedCert(cert *x509.Certificate, timestamp string) { //change so that
 
 func showPEMData(data []byte, timestamp string) {
 	id := uuid.New()
-	fileName := fmt.Sprintf("/Volumes/A1/certificates/%s_%s.pem", timestamp, id)
+	fileName := fmt.Sprintf("/Volumes/A1/certificatesxenon/%s_%s.pem", timestamp, id)
 	sOutputFile, err := os.Create(fileName)
 	if err != nil {
 		fmt.Printf("Failed to create file: %s\n", err)

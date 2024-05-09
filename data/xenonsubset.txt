@@ -1,0 +1,5 @@
+https://ct.googleapis.com/logs/xenon2020/
+https://ct.googleapis.com/logs/xenon2021/
+https://ct.googleapis.com/logs/xenon2022/
+https://ct.googleapis.com/logs/xenon2023/
+https://ct.googleapis.com/logs/eu1/xenon2024/
